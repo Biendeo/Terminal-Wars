@@ -3,17 +3,17 @@
 #include "UI.h"
 #include "rlutil.h"
 
-int TerminalWars::CreateMenu(int yPos, int xPos, int height, int width, vector<string> menuItems, bool cancelable, int defaultSelect, int unselectBack, int unselectFore, int selectBack, int selectFore, int disabledBack, int disabledFore, int disabledSelectBack, int disabledSelectFore) {
-	const int paddingItems = 2;
+int TerminalWars::CreateMenu(int yPos, int xPos, int height, int width, vector<string> menuItems, int padding, bool cancelable, int defaultSelect, int unselectBack, int unselectFore, int selectBack, int selectFore, int disabledBack, int disabledFore, int disabledSelectBack, int disabledSelectFore) {
+	const int size = (int)menuItems.size();
 	int currentSelect = defaultSelect;
 	int currentTop;
-	if (currentSelect < paddingItems) {
+	if (currentSelect < padding) {
 		currentTop = 0;
-	} else if (currentSelect > (int)menuItems.size() - paddingItems) {
-		currentTop = (int)menuItems.size() - height;
-	} else if ((int)menuItems.size() > height) {
-		if (currentSelect > (int)menuItems.size() - height / 2) {
-			currentTop = (int)menuItems.size() - height;
+	} else if (currentSelect > size - padding) {
+		currentTop = size - height;
+	} else if (size > height) {
+		if (currentSelect > size - height / 2) {
+			currentTop = size - height;
 		} else {
 			currentTop = currentSelect - height / 2;
 		}
@@ -27,7 +27,7 @@ int TerminalWars::CreateMenu(int yPos, int xPos, int height, int width, vector<s
 		rlutil::saveDefaultColor();
 		while (drawnItems < height) {
 			rlutil::locate(xPos + 1, yPos + 1 + drawnItems);
-			if (currentTop + drawnItems >= (int)menuItems.size()) {
+			if (currentTop + drawnItems >= size) {
 				break;
 			}
 			std::string currentString = menuItems.at(currentTop + drawnItems);
@@ -68,18 +68,18 @@ int TerminalWars::CreateMenu(int yPos, int xPos, int height, int width, vector<s
 				if (currentSelect > 0) {
 					--currentSelect;
 				}
-				if (currentSelect - currentTop < paddingItems) {
+				if (currentSelect - currentTop < padding) {
 					if (currentTop > 0) {
 						--currentTop;
 					}
 				}
 				break;
 			case downKey:
-				if (currentSelect < (int)menuItems.size() - 1) {
+				if (currentSelect < size - 1) {
 					++currentSelect;
 				}
-				if (currentTop + height - currentSelect - 1 < paddingItems) {
-					if (currentTop + height < (int)menuItems.size()) {
+				if (currentTop + height - currentSelect - 1 < padding) {
+					if (currentTop + height < size) {
 						++currentTop;
 					}
 				}

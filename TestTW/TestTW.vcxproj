@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7B71A45C-31E7-4108-BDB9-01BBD08F4684}</ProjectGuid>
+    <ProjectGuid>{23528171-6AEA-4963-AB53-38B885F2A41B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TerminalWars</RootNamespace>
+    <RootNamespace>TestTW</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -142,14 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</SDLCheck>
-    </ClCompile>
-    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="..\Terminal Wars\UI.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rlutil.h" />
-    <ClInclude Include="UI.h" />
+    <ClInclude Include="..\Terminal Wars\rlutil.h" />
+    <ClInclude Include="..\Terminal Wars\UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
