@@ -3,7 +3,7 @@
 #include "UI.h"
 #include "rlutil.h"
 
-int TerminalWars::CreateMenu(int yPos, int xPos, int height, int width, vector<string> menuItems, int padding, bool cancelable, int defaultSelect, int unselectBack, int unselectFore, int selectBack, int selectFore, int disabledBack, int disabledFore, int disabledSelectBack, int disabledSelectFore) {
+int TerminalWars::CreateMenu(int xPos, int yPos, int width, int height, vector<string> menuItems, int padding, bool cancelable, int defaultSelect, int unselectBack, int unselectFore, int selectBack, int selectFore, int disabledBack, int disabledFore, int disabledSelectBack, int disabledSelectFore) {
 	const int size = (int)menuItems.size();
 	int currentSelect = defaultSelect;
 	int currentTop;

@@ -40,7 +40,7 @@ void test1() {
 	testMenu.push_back("ITEM 13");
 	testMenu.push_back("ITEM 14");
 
-	int selectedOption = CreateMenu(0, 0, 7, 80, testMenu, 2, true, 8);
+	int selectedOption = CreateMenu(0, 0, 80, 7, testMenu, 2, true, 8);
 
 	rlutil::locate(1, 14);
 	cout << "You selected " << testMenu.at(selectedOption) << " [" << selectedOption << "]" << endl;
