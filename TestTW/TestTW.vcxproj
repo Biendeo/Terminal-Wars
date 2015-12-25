@@ -142,12 +142,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Terminal Wars\Data.cpp" />
+    <ClCompile Include="..\Terminal Wars\Map.cpp" />
+    <ClCompile Include="..\Terminal Wars\MapTile.cpp" />
     <ClCompile Include="..\Terminal Wars\UI.cpp" />
+    <ClCompile Include="..\Terminal Wars\Unit.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Terminal Wars\Constants.h" />
+    <ClInclude Include="..\Terminal Wars\Data.h" />
+    <ClInclude Include="..\Terminal Wars\Map.h" />
+    <ClInclude Include="..\Terminal Wars\MapTile.h" />
     <ClInclude Include="..\Terminal Wars\rlutil.h" />
     <ClInclude Include="..\Terminal Wars\UI.h" />
+    <ClInclude Include="..\Terminal Wars\Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

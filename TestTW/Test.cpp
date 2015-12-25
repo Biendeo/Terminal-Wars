@@ -3,6 +3,8 @@
 #include <vector>
 #include "../Terminal Wars/rlutil.h"
 #include "../Terminal Wars/UI.h"
+#include "../Terminal Wars/Data.h"
+#include "../Terminal Wars/MapTile.h"
 
 void test1();
 void test2();
@@ -49,5 +51,19 @@ void test1() {
 }
 
 void test2() {
+	using namespace std;
+	using namespace TerminalWars;
+	rlutil::cls();
+	cout << "Press any key to begin TEST 2" << endl;
+	rlutil::getkey();
 
+	Data d;
+
+	MapTile tile1 = d.GetMapTileData(MapTileType::FIELD);
+	MapTile tile2 = Data::GetMapTileData(MapTileType::FIELD);
+
+	std::cout << "Tile1 is of name " << tile1.GetName() << std::endl;
+	std::cout << "Tile2 is of name " << tile2.GetName() << std::endl;
+
+	rlutil::anykey();
 }

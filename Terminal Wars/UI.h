@@ -2,17 +2,18 @@
 #include <vector>
 #include <string>
 #include "rlutil.h"
+#include "Constants.h"
 
-using namespace std;
-using namespace rlutil;
 namespace TerminalWars {
-	
+	using namespace std;
+	using namespace rlutil;
+
 	/// These can be freely changed depending on the program user's needs.
-	const int upKey = KEY_UP;
-	const int downKey = KEY_DOWN;
-	const int confirmKey = KEY_ENTER;
-	const int cancelKey = KEY_ESCAPE;
-	const int disabledChar = '\n';
+	const char upKey = KEY_UP;
+	const char downKey = KEY_DOWN;
+	const char confirmKey = KEY_ENTER;
+	const char cancelKey = KEY_ESCAPE;
+	const char disabledChar = '\n';
 
 	/// Function: CreateMenu
 	/// This function will display a menu at a given position on the screen.

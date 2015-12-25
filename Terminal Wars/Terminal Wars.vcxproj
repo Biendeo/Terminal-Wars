@@ -142,14 +142,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="Main.cpp">
       <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</SDLCheck>
     </ClCompile>
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapTile.h" />
     <ClInclude Include="rlutil.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
