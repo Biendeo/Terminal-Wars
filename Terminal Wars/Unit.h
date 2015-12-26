@@ -9,10 +9,13 @@ namespace TerminalWars {
 		~Unit();
 
 		UnitType GetType();
-		std::string GetName();
+		std::string GetGivenName();
+		void SetGivenName(std::string givenName);
+		Team GetTeam();
 
 		private:
 		UnitType type;
-		std::string name;
+		std::string givenName;
+		Team team;
 	};
 }

@@ -147,6 +147,7 @@
     <ClCompile Include="..\Terminal Wars\MapTile.cpp" />
     <ClCompile Include="..\Terminal Wars\UI.cpp" />
     <ClCompile Include="..\Terminal Wars\Unit.cpp" />
+    <ClCompile Include="..\Terminal Wars\UnitData.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +158,7 @@
     <ClInclude Include="..\Terminal Wars\rlutil.h" />
     <ClInclude Include="..\Terminal Wars\UI.h" />
     <ClInclude Include="..\Terminal Wars\Unit.h" />
+    <ClInclude Include="..\Terminal Wars\UnitData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

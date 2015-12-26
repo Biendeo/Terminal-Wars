@@ -59,11 +59,19 @@ void test2() {
 
 	Data d;
 
-	MapTile tile1 = d.GetMapTileData(MapTileType::FIELD);
-	MapTile tile2 = Data::GetMapTileData(MapTileType::FIELD);
+	// These two should be the same.
+	MapTile tile1 = d.GetMapTileData(MapTileType::PLAIN);
+	MapTile tile2 = Data::GetMapTileData(MapTileType::PLAIN);
 
 	std::cout << "Tile1 is of name " << tile1.GetName() << std::endl;
 	std::cout << "Tile2 is of name " << tile2.GetName() << std::endl;
+
+	UnitData unit1 = d.GetUnitData(UnitType::INFANTRY);
+	UnitData unit2 = Data::GetUnitData(UnitType::INFANTRY);
+
+	// These two should be the same.
+	std::cout << "Unit1 is of name " << unit1.GetName() << std::endl;
+	std::cout << "Unit2 is of name " << unit2.GetName() << std::endl;
 
 	rlutil::anykey();
 }

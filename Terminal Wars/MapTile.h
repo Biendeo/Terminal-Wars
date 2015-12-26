@@ -4,9 +4,6 @@
 
 namespace TerminalWars {
 
-	typedef char MovementCost;
-	typedef char DefenseRating;
-
 	class MapTile {
 		public:
 		MapTile(MapTileType type, std::string name, char displaychar, Color foregroundColor, Color backgroundColor, MovementCost infantry, MovementCost mech, MovementCost tires, MovementCost tread, MovementCost pipe, MovementCost slime, MovementCost ship, MovementCost transport, MovementCost air, DefenseRating defense);

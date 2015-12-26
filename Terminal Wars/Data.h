@@ -1,20 +1,22 @@
 #pragma once
 #include <vector>
+#include "Constants.h"
 #include "Map.h"
 #include "MapTile.h"
-#include "Constants.h"
 #include "UI.h"
+#include "Unit.h"
+#include "UnitData.h"
 
 namespace TerminalWars {
-	using namespace std;
 	class Data {
 		public:
 		Data();
 		~Data();
-		// TODO: Is it safe to static this?
 		static MapTile GetMapTileData(MapTileType type);
+		static UnitData GetUnitData(UnitType type);
 
 		private:
-		static vector<MapTile> mapTiles;
+		static std::vector<MapTile> mapTiles;
+		static std::vector<UnitData> units;
 	};
 }

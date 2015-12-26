@@ -2,6 +2,10 @@
 
 namespace TerminalWars {
 	typedef char Color;
+	typedef short MoneyCost;
+	typedef char MovementCost;
+	typedef char DefenseRating;
+	typedef unsigned char BaseDamage;
 
 	enum class Team : char {
 		NONE,

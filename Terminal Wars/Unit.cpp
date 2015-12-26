@@ -3,6 +3,7 @@
 namespace TerminalWars {
 
 	Unit::Unit() {
+		givenName = "";
 	}
 
 
@@ -13,7 +14,15 @@ namespace TerminalWars {
 		return type;
 	}
 
-	std::string Unit::GetName() {
-		return name;
+	std::string Unit::GetGivenName() {
+		return givenName;
+	}
+
+	void Unit::SetGivenName(std::string givenName) {
+		this->givenName = givenName;
+	}
+
+	Team Unit::GetTeam() {
+		return team;
 	}
 }
