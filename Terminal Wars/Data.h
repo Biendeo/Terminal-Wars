@@ -12,7 +12,6 @@ namespace TerminalWars {
 		Data();
 		~Data();
 		// TODO: Is it safe to static this?
-		// TODO: Can the user modify this? They shouldn't.
 		static MapTile GetMapTileData(MapTileType type);
 
 		private:

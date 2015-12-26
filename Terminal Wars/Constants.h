@@ -1,6 +1,8 @@
 #pragma once
 
 namespace TerminalWars {
+	typedef char Color;
+
 	enum class Team : char {
 		NONE,
 		RED,
@@ -12,7 +14,7 @@ namespace TerminalWars {
 	// TODO: Finish MapTileType
 	enum class MapTileType : char {
 		NONE,
-		FIELD,
+		PLAIN,
 		NONE_CITY,
 		RED_CITY,
 		BLUE_CITY,
@@ -21,9 +23,22 @@ namespace TerminalWars {
 	};
 
 	// TODO: Finish UnitType
-	enum class UnitType : char{
+	enum class UnitType : char {
 		NONE,
 		INFANTRY,
 		MECH
+	};
+
+	enum class MovementType : char {
+		NONE,
+		INFANTRY,
+		MECH,
+		TIRES,
+		TREAD,
+		PIPE,
+		SLIME,
+		SHIP,
+		TRANSPORT,
+		AIR
 	};
 }

@@ -8,9 +8,11 @@ namespace TerminalWars {
 	vector<MapTile> Data::mapTiles;
 
 	Data::Data() {
-		mapTiles.emplace_back(MapTile(MapTileType::FIELD, "Field"));
+		// TODO: Make this easier to modify.
+		mapTiles.emplace_back(MapTile(MapTileType::NONE, "None", '?', rlutil::BLACK, rlutil::GREY, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+		mapTiles.emplace_back(MapTile(MapTileType::PLAIN, "Plain", '_', rlutil::GREEN, rlutil::LIGHTGREEN, 1, 1, 2, 1, 0, 1, 0, 0, 1, 1));
+		// TODO: Add the rest.
 	}
-
 
 	Data::~Data() {
 		mapTiles.clear();
