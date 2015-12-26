@@ -2,10 +2,14 @@
 
 namespace TerminalWars {
 	typedef char Color;
-	typedef short MoneyCost;
-	typedef char MovementCost;
+	typedef int Money;
+	typedef unsigned short MoneyCost;
+	typedef char Movement;
 	typedef char DefenseRating;
 	typedef unsigned char BaseDamage;
+	typedef char Vision;
+	typedef char Range;
+	typedef char Ammo;
 
 	enum class Team : char {
 		NONE,
@@ -44,5 +48,29 @@ namespace TerminalWars {
 		SHIP,
 		TRANSPORT,
 		AIR
+	};
+
+	enum class WeaponType : char {
+		NONE,
+		M_GUN,
+		BAZOOKA,
+		T_CANNON,
+		MD_CANNON,
+		NEO_CANNON,
+		MEGA_CANNON,
+		ART_CANNON,
+		ROCKETS,
+		VULCAN,
+		G_MISSILES,
+		PIPE,
+		F_MISSILES,
+		BOMBS,
+		COP_MISSILES,
+		OMNIMISSILES,
+		BSHIP_CANNON,
+		CRU_MISSILES,
+		CRU_AA,
+		TORPEDOS,
+		CAR_MISSILES
 	};
 }

@@ -3,14 +3,15 @@
 
 
 namespace TerminalWars {
-	UnitData::UnitData(UnitType type, std::string name, char displayChar, Color color, MoneyCost cost, MovementType movementType) {
+	UnitData::UnitData(UnitType type, std::string name, char displayChar, Color color, MoneyCost cost, MovementType movementType, Movement maxMovement, Vision vision) {
 		// TODO: All of this.
 		this->type = type;
 		this->name = name;
 		this->displayChar = displayChar;
-		this->color = color;
 		this->cost = cost;
 		this->movementType = movementType;
+		this->maxMovement = maxMovement;
+		this->vision = vision;
 	}
 
 
@@ -33,6 +34,14 @@ namespace TerminalWars {
 	MovementType UnitData::GetMovementType() {
 		return movementType;
 	}
+
+	Movement UnitData::GetMaxMovement() {
+		return maxMovement;
+	}
+
+	Vision UnitData::GetVision() {
+		return vision;
+	}
 	
 	BaseDamage UnitData::GetBaseDamage(UnitType defender) {
 		// TODO: Make this a lot more professional than it is.
@@ -42,9 +51,5 @@ namespace TerminalWars {
 
 	char UnitData::GetDisplayChar() {
 		return displayChar;
-	}
-
-	Color UnitData::GetColor() {
-		return color;
 	}
 }

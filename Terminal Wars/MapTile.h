@@ -6,14 +6,14 @@ namespace TerminalWars {
 
 	class MapTile {
 		public:
-		MapTile(MapTileType type, std::string name, char displaychar, Color foregroundColor, Color backgroundColor, MovementCost infantry, MovementCost mech, MovementCost tires, MovementCost tread, MovementCost pipe, MovementCost slime, MovementCost ship, MovementCost transport, MovementCost air, DefenseRating defense);
+		MapTile(MapTileType type, std::string name, char displayChar, Color foregroundColor, Color backgroundColor, Movement infantry, Movement mech, Movement tires, Movement tread, Movement pipe, Movement slime, Movement ship, Movement transport, Movement air, DefenseRating defense);
 		~MapTile();
 		MapTileType GetType();
 		std::string GetName();
 		char GetDisplayChar();
 		Color GetForegroundColor();
 		Color GetBackgroundColor();
-		MovementCost GetMovementCost(MovementType type);
+		Movement GetMovementCost(MovementType type);
 		DefenseRating GetDefense();
 
 		private:
@@ -23,15 +23,15 @@ namespace TerminalWars {
 		char foregroundColor;
 		char backgroundColor;
 		struct {
-			MovementCost infantry;
-			MovementCost mech;
-			MovementCost tires;
-			MovementCost tread;
-			MovementCost pipe;
-			MovementCost slime;
-			MovementCost ship;
-			MovementCost transport;
-			MovementCost air;
+			Movement infantry;
+			Movement mech;
+			Movement tires;
+			Movement tread;
+			Movement pipe;
+			Movement slime;
+			Movement ship;
+			Movement transport;
+			Movement air;
 		} movementCost;
 		DefenseRating defense;
 	};

@@ -2,7 +2,7 @@
 #include "MapTile.h"
 
 namespace TerminalWars {
-	MapTile::MapTile(MapTileType type, std::string name, char displaychar, Color foregroundColor, Color backgroundColor, MovementCost infantry, MovementCost mech, MovementCost tires, MovementCost tread, MovementCost pipe, MovementCost slime, MovementCost ship, MovementCost transport, MovementCost air, DefenseRating defense) {
+	MapTile::MapTile(MapTileType type, std::string name, char displayChar, Color foregroundColor, Color backgroundColor, Movement infantry, Movement mech, Movement tires, Movement tread, Movement pipe, Movement slime, Movement ship, Movement transport, Movement air, DefenseRating defense) {
 		this->type = type;
 		this->name = name;
 		this->displayChar = displayChar;
@@ -43,7 +43,7 @@ namespace TerminalWars {
 		return backgroundColor;
 	}
 
-	MovementCost MapTile::GetMovementCost(MovementType type) {
+	Movement MapTile::GetMovementCost(MovementType type) {
 		switch (type) {
 			case MovementType::NONE:
 			default:

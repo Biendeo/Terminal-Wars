@@ -148,6 +148,7 @@
     <ClCompile Include="..\Terminal Wars\UI.cpp" />
     <ClCompile Include="..\Terminal Wars\Unit.cpp" />
     <ClCompile Include="..\Terminal Wars\UnitData.cpp" />
+    <ClCompile Include="..\Terminal Wars\Weapon.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,10 @@
     <ClInclude Include="..\Terminal Wars\UI.h" />
     <ClInclude Include="..\Terminal Wars\Unit.h" />
     <ClInclude Include="..\Terminal Wars\UnitData.h" />
+    <ClInclude Include="..\Terminal Wars\Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

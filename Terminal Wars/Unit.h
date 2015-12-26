@@ -12,6 +12,7 @@ namespace TerminalWars {
 		std::string GetGivenName();
 		void SetGivenName(std::string givenName);
 		Team GetTeam();
+		Color GetColor();
 
 		private:
 		UnitType type;

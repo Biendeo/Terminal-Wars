@@ -25,6 +25,7 @@ void test1() {
 	rlutil::cls();
 	cout << "Press any key to begin TEST 1" << endl;
 	rlutil::getkey();
+	rlutil::cls();
 
 	vector<string> testMenu;
 	testMenu.push_back("ITEM 1 is plain old.");
@@ -65,13 +66,75 @@ void test2() {
 
 	std::cout << "Tile1 is of name " << tile1.GetName() << std::endl;
 	std::cout << "Tile2 is of name " << tile2.GetName() << std::endl;
-
-	UnitData unit1 = d.GetUnitData(UnitType::INFANTRY);
-	UnitData unit2 = Data::GetUnitData(UnitType::INFANTRY);
-
-	// These two should be the same.
-	std::cout << "Unit1 is of name " << unit1.GetName() << std::endl;
-	std::cout << "Unit2 is of name " << unit2.GetName() << std::endl;
+	std::cout << std::endl << "These should be the same." << std::endl;
+	std::cout << "Press any key to scroll through each info." << std::endl;
 
 	rlutil::anykey();
+	rlutil::cls();
+
+	for (int i = 0; i < Data::GetMapTileDataSize(); i++) {
+		MapTile tile = Data::GetMapTileData(static_cast<MapTileType>(i));
+		std::cout << "Tile type: " << static_cast<int>(tile.GetType()) << std::endl;
+		std::cout << "Tile name: " << tile.GetName() << std::endl;
+		std::cout << "Tile appearance: ";
+		rlutil::setColor(tile.GetForegroundColor());
+		rlutil::setBackgroundColor(tile.GetBackgroundColor());
+		std::cout << tile.GetDisplayChar();
+		rlutil::resetColor();
+		std::cout << std::endl;
+		std::cout << "Tile infantry speed: " << int(tile.GetMovementCost(MovementType::INFANTRY)) << std::endl;
+		std::cout << "Tile mech speed: " << int(tile.GetMovementCost(MovementType::MECH)) << std::endl;
+		std::cout << "Tile tires speed: " << int(tile.GetMovementCost(MovementType::TIRES)) << std::endl;
+		std::cout << "Tile tread speed: " << int(tile.GetMovementCost(MovementType::TREAD)) << std::endl;
+		std::cout << "Tile pipe speed: " << int(tile.GetMovementCost(MovementType::PIPE)) << std::endl;
+		std::cout << "Tile slime speed: " << int(tile.GetMovementCost(MovementType::SLIME)) << std::endl;
+		std::cout << "Tile ship speed: " << int(tile.GetMovementCost(MovementType::SHIP)) << std::endl;
+		std::cout << "Tile transport speed: " << int(tile.GetMovementCost(MovementType::TRANSPORT)) << std::endl;
+		std::cout << "Tile air speed: " << int(tile.GetMovementCost(MovementType::AIR)) << std::endl;
+		std::cout << "Tile defense rating: " << int(tile.GetDefense()) << std::endl;
+
+		rlutil::anykey();
+		rlutil::cls();
+	}
+
+	for (int i = 0; i < Data::GetUnitDataSize(); i++) {
+		UnitData unit = Data::GetUnitData(static_cast<UnitType>(i));
+		std::cout << "Unit type: " << static_cast<int>(unit.GetType()) << std::endl;
+		std::cout << "Unit name: " << unit.GetName() << std::endl;
+		std::cout << "Unit appearance: ";
+		rlutil::setColor(rlutil::LIGHTRED);
+		std::cout << unit.GetDisplayChar() << " ";
+		rlutil::setColor(rlutil::LIGHTBLUE);
+		std::cout << unit.GetDisplayChar() << " ";
+		rlutil::setColor(rlutil::LIGHTGREEN);
+		std::cout << unit.GetDisplayChar() << " ";
+		rlutil::setColor(rlutil::YELLOW);
+		std::cout << unit.GetDisplayChar();
+		rlutil::resetColor();
+		std::cout << std::endl;
+		std::cout << "Unit cost: " << int(unit.GetCost()) << std::endl;
+		std::cout << "Unit movement type: " << static_cast<int>(unit.GetMovementType()) << std::endl;
+		std::cout << "Unit movement points: " << int(unit.GetMaxMovement()) << std::endl;
+		std::cout << "Unit vision: " << int(unit.GetVision()) << std::endl;
+		// TODO: Test for damage.
+
+		rlutil::anykey();
+		rlutil::cls();
+	}
+
+	for (int i = 0; i < Data::GetWeaponDataSize(); i++) {
+		Weapon weapon = Data::GetWeaponData(static_cast<WeaponType>(i));
+		std::cout << "Weapon type: " << static_cast<int>(weapon.GetType()) << std::endl;
+		std::cout << "Weapon name: " << weapon.GetName() << std::endl;
+		std::cout << "Weapon min range: " << int(weapon.GetMinRange()) << std::endl;
+		std::cout << "Weapon max range: " << int(weapon.GetMaxRange()) << std::endl;
+		std::cout << "Weapon total ammo: " << int(weapon.GetMaxAmmo()) << std::endl;
+		std::cout << "Weapon ammo cost: " << int(weapon.GetAmmoCost()) << std::endl;
+		std::cout << "Is it direct? : " << weapon.IsDirect() << std::endl;
+
+		rlutil::anykey();
+		rlutil::cls();
+	}
+
+	//rlutil::anykey();
 }
