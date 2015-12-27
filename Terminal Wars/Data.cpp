@@ -1,25 +1,26 @@
 #include <iostream>
-#include <vector>
+#include <map>
+#include <stdexcept>
 #include "Constants.h"
 #include "Data.h"
 #include "MapTile.h"
 
 namespace TerminalWars {
-	vector<MapTile> Data::mapTiles;
-	vector<UnitData> Data::units;
-	vector<Weapon> Data::weapons;
+	std::map<MapTileType, MapTile> Data::mapTiles;
+	std::map<UnitType, UnitData> Data::units;
+	std::map<WeaponType, Weapon> Data::weapons;
 
 	Data::Data() {
 		// TODO: Make this easier to modify.
 		// TODO: Add the rest.
-		mapTiles.emplace_back(MapTile(MapTileType::NONE, "None", '?',  rlutil::GREY, rlutil::BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-		mapTiles.emplace_back(MapTile(MapTileType::PLAIN, "Plain", '_', rlutil::LIGHTGREEN, rlutil::GREEN, 1, 1, 2, 1, 0, 1, 0, 0, 1, 1));
+		mapTiles.emplace(MapTileType::NONE, MapTile(MapTileType::NONE, "None", '?',  rlutil::GREY, rlutil::BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+		mapTiles.emplace(MapTileType::PLAIN, MapTile(MapTileType::PLAIN, "Plain", '_', rlutil::LIGHTGREEN, rlutil::GREEN, 1, 1, 2, 1, 0, 1, 0, 0, 1, 1));
 
-		units.emplace_back(UnitData(UnitType::NONE, "None", '?', rlutil::MAGENTA, 0, MovementType::NONE, 0, 0));
-		units.emplace_back(UnitData(UnitType::INFANTRY, "Infantry", 'I', rlutil::GREY, 1000, MovementType::INFANTRY, 3, 2));
+		units.emplace(UnitType::NONE, UnitData(UnitType::NONE, "None", '?', rlutil::MAGENTA, 0, MovementType::NONE, 0, 0));
+		units.emplace(UnitType::INFANTRY, UnitData(UnitType::INFANTRY, "Infantry", 'I', rlutil::GREY, 1000, MovementType::INFANTRY, 3, 2));
 
-		weapons.emplace_back(Weapon(WeaponType::NONE, "None", 0, 0, 0, 0, true));
-		weapons.emplace_back(Weapon(WeaponType::M_GUN, "Machine Gun", 1, 1, -1, 0, true));
+		weapons.emplace(WeaponType::NONE, Weapon(WeaponType::NONE, "None", 0, 0, 0, 0, true));
+		weapons.emplace(WeaponType::M_GUN, Weapon(WeaponType::M_GUN, "Machine Gun", 1, 1, -1, 0, true));
 	}
 
 	Data::~Data() {
@@ -27,13 +28,13 @@ namespace TerminalWars {
 	}
 
 	MapTile Data::GetMapTileData(MapTileType type) {
-		for (int i = 0; i < int(mapTiles.size()); i++) {
-			if (mapTiles.at(i).GetType() == type) {
-				return mapTiles.at(i);
-			}
+		try {
+			return mapTiles.at(type);
+		}
+		catch (const std::out_of_range& oor) {
+			std::cerr << "GetMapTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		}
 
-		std::cerr << "GetMapTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		return GetMapTileData(MapTileType::NONE);
 	}
 
@@ -43,13 +44,13 @@ namespace TerminalWars {
 
 
 	UnitData Data::GetUnitData(UnitType type) {
-		for (int i = 0; i < int(units.size()); i++) {
-			if (units.at(i).GetType() == type) {
-				return units.at(i);
-			}
+		try {
+			return units.at(type);
+		}
+		catch (const std::out_of_range& oor) {
+			std::cerr << "GetUnitTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		}
 
-		std::cerr << "GetUnitTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		return GetUnitData(UnitType::NONE);
 	}
 
@@ -58,13 +59,13 @@ namespace TerminalWars {
 	}
 
 	Weapon Data::GetWeaponData(WeaponType type) {
-		for (int i = 0; i < int(weapons.size()); i++) {
-			if (weapons.at(i).GetType() == type) {
-				return weapons.at(i);
-			}
+		try {
+			return weapons.at(type);
+		}
+		catch (const std::out_of_range& oor) {
+			std::cerr << "GetWeaponData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		}
 
-		std::cerr << "GetWeaponData() could not find type " << static_cast<int>(type) << "." << std::endl;
 		return GetWeaponData(WeaponType::NONE);
 	}
 

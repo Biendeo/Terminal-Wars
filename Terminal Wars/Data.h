@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <map>
 #include "Constants.h"
 #include "Map.h"
 #include "MapTile.h"
@@ -21,8 +21,8 @@ namespace TerminalWars {
 		static int GetWeaponDataSize();
 
 		private:
-		static std::vector<MapTile> mapTiles;
-		static std::vector<UnitData> units;
-		static std::vector<Weapon> weapons;
+		static std::map<MapTileType, MapTile> mapTiles;
+		static std::map<UnitType, UnitData> units;
+		static std::map<WeaponType, Weapon> weapons;
 	};
 }

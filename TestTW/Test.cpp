@@ -72,7 +72,8 @@ void test2() {
 	rlutil::anykey();
 	rlutil::cls();
 
-	for (int i = 0; i < Data::GetMapTileDataSize(); i++) {
+	// This tests every map tile (including the exceed case).
+	for (int i = 0; i <= Data::GetMapTileDataSize(); i++) {
 		MapTile tile = Data::GetMapTileData(static_cast<MapTileType>(i));
 		std::cout << "Tile type: " << static_cast<int>(tile.GetType()) << std::endl;
 		std::cout << "Tile name: " << tile.GetName() << std::endl;
@@ -96,8 +97,9 @@ void test2() {
 		rlutil::anykey();
 		rlutil::cls();
 	}
-
-	for (int i = 0; i < Data::GetUnitDataSize(); i++) {
+	
+	// This tests every unit type (including the exceed case).
+	for (int i = 0; i <= Data::GetUnitDataSize(); i++) {
 		UnitData unit = Data::GetUnitData(static_cast<UnitType>(i));
 		std::cout << "Unit type: " << static_cast<int>(unit.GetType()) << std::endl;
 		std::cout << "Unit name: " << unit.GetName() << std::endl;
@@ -122,7 +124,8 @@ void test2() {
 		rlutil::cls();
 	}
 
-	for (int i = 0; i < Data::GetWeaponDataSize(); i++) {
+	// This tests every weapon type (including the exceed case).
+	for (int i = 0; i <= Data::GetWeaponDataSize(); i++) {
 		Weapon weapon = Data::GetWeaponData(static_cast<WeaponType>(i));
 		std::cout << "Weapon type: " << static_cast<int>(weapon.GetType()) << std::endl;
 		std::cout << "Weapon name: " << weapon.GetName() << std::endl;
