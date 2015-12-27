@@ -13,16 +13,21 @@ namespace TerminalWars {
 		public:
 		Data();
 		~Data();
+		// TODO: Decide whether to static this again.
 		static MapTile GetMapTileData(MapTileType type);
 		static int GetMapTileDataSize();
 		static UnitData GetUnitData(UnitType type);
 		static int GetUnitDataSize();
 		static Weapon GetWeaponData(WeaponType type);
 		static int GetWeaponDataSize();
+		static BaseDamage GetBaseDamage(UnitType attacker, UnitType defender, bool primary);
 
 		private:
 		static std::map<MapTileType, MapTile> mapTiles;
 		static std::map<UnitType, UnitData> units;
 		static std::map<WeaponType, Weapon> weapons;
+		static std::map<DamageKey, BaseDamage> baseDamage;
+
+		static DamageKey MakeDamageKey(UnitType attacker, UnitType defender, bool primary);
 	};
 }

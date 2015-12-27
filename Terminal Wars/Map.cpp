@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "Constants.h"
 #include "Data.h"
 #include "Map.h"
@@ -39,13 +40,7 @@ namespace TerminalWars {
 
 	void Map::CaptureBuilding(int x, int y, Team team) {
 		// TODO: Fill in all MapTiles.
-		if (x >= GetWidth()) {
-			std::cerr << "Map::CaptureBuilding() tried to exceed width " << width << " with " << x << "." << std::endl;
-			return;
-		} else if (y >= GetHeight()) {
-			std::cerr << "Map::CaptureBuilding() tried to exceed height " << height << " with " << y << "." << std::endl;
-			return;
-		} else {
+		try {
 			switch (map.at(x).at(y)) {
 				case MapTileType::NONE_CITY:
 				case MapTileType::RED_CITY:
@@ -71,8 +66,14 @@ namespace TerminalWars {
 					}
 					break;
 				default:
-					std::cerr << "Map::CaptureBuilding() tried to convert a " << Data::GetMapTileData(map.at(x).at(y)).GetName() << "." << std::endl;
+					std::cerr << "Map::CaptureBuilding() tried to convert an invalid " << Data::GetMapTileData(map.at(x).at(y)).GetName() << "." << std::endl;
+					break;
 			}
+		}
+		catch (const std::out_of_range& oor) {
+			std::cerr << "Map::CaptureBuilding() was given a bad range (" << x << ", " << y << ")." << std::endl;
+			std::cerr << oor.what() << std::endl;
+			return;
 		}
 	}
 }

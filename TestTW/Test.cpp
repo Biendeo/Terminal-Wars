@@ -60,21 +60,9 @@ void test2() {
 
 	Data d;
 
-	// These two should be the same.
-	MapTile tile1 = d.GetMapTileData(MapTileType::PLAIN);
-	MapTile tile2 = Data::GetMapTileData(MapTileType::PLAIN);
-
-	std::cout << "Tile1 is of name " << tile1.GetName() << std::endl;
-	std::cout << "Tile2 is of name " << tile2.GetName() << std::endl;
-	std::cout << std::endl << "These should be the same." << std::endl;
-	std::cout << "Press any key to scroll through each info." << std::endl;
-
-	rlutil::anykey();
-	rlutil::cls();
-
 	// This tests every map tile (including the exceed case).
-	for (int i = 0; i <= Data::GetMapTileDataSize(); i++) {
-		MapTile tile = Data::GetMapTileData(static_cast<MapTileType>(i));
+	for (int i = 0; i <= d.GetMapTileDataSize(); i++) {
+		MapTile tile = d.GetMapTileData(static_cast<MapTileType>(i));
 		std::cout << "Tile type: " << static_cast<int>(tile.GetType()) << std::endl;
 		std::cout << "Tile name: " << tile.GetName() << std::endl;
 		std::cout << "Tile appearance: ";
@@ -99,8 +87,8 @@ void test2() {
 	}
 	
 	// This tests every unit type (including the exceed case).
-	for (int i = 0; i <= Data::GetUnitDataSize(); i++) {
-		UnitData unit = Data::GetUnitData(static_cast<UnitType>(i));
+	for (int i = 0; i <= d.GetUnitDataSize(); i++) {
+		UnitData unit = d.GetUnitData(static_cast<UnitType>(i));
 		std::cout << "Unit type: " << static_cast<int>(unit.GetType()) << std::endl;
 		std::cout << "Unit name: " << unit.GetName() << std::endl;
 		std::cout << "Unit appearance: ";
@@ -125,8 +113,8 @@ void test2() {
 	}
 
 	// This tests every weapon type (including the exceed case).
-	for (int i = 0; i <= Data::GetWeaponDataSize(); i++) {
-		Weapon weapon = Data::GetWeaponData(static_cast<WeaponType>(i));
+	for (int i = 0; i <= d.GetWeaponDataSize(); i++) {
+		Weapon weapon = d.GetWeaponData(static_cast<WeaponType>(i));
 		std::cout << "Weapon type: " << static_cast<int>(weapon.GetType()) << std::endl;
 		std::cout << "Weapon name: " << weapon.GetName() << std::endl;
 		std::cout << "Weapon min range: " << int(weapon.GetMinRange()) << std::endl;
