@@ -17,6 +17,7 @@ namespace TerminalWars {
 		DefenseRating GetDefense();
 
 		private:
+		// TODO: Is the type necessary to store if the map requires it for access?
 		MapTileType type;
 		std::string name;
 		char displayChar;

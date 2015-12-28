@@ -5,6 +5,8 @@
 #include "../Terminal Wars/UI.h"
 #include "../Terminal Wars/Data.h"
 #include "../Terminal Wars/MapTile.h"
+#include "../Terminal Wars/Weapon.h"
+#include "../Terminal Wars/UnitData.h"
 
 void test1();
 void test2();
@@ -105,7 +107,10 @@ void test2() {
 		std::cout << "Unit cost: " << int(unit.GetCost()) << std::endl;
 		std::cout << "Unit movement type: " << static_cast<int>(unit.GetMovementType()) << std::endl;
 		std::cout << "Unit movement points: " << int(unit.GetMaxMovement()) << std::endl;
+		std::cout << "Unit fuel: " << int(unit.GetMaxFuel()) << std::endl;
 		std::cout << "Unit vision: " << int(unit.GetVision()) << std::endl;
+		std::cout << "Unit weapon 1: " << unit.GetWeapon1().GetName() << " (" << static_cast<int>(unit.GetWeapon1().GetType()) << ")" << std::endl;
+		std::cout << "Unit weapon 2: " << unit.GetWeapon2().GetName() << " (" << static_cast<int>(unit.GetWeapon2().GetType()) << ")" << std::endl;
 		// TODO: Test for damage.
 
 		rlutil::anykey();
@@ -114,7 +119,7 @@ void test2() {
 
 	// This tests every weapon type (including the exceed case).
 	for (int i = 0; i <= d.GetWeaponDataSize(); i++) {
-		Weapon weapon = d.GetWeaponData(static_cast<WeaponType>(i));
+		TerminalWars::Weapon weapon = d.GetWeaponData(static_cast<WeaponType>(i));
 		std::cout << "Weapon type: " << static_cast<int>(weapon.GetType()) << std::endl;
 		std::cout << "Weapon name: " << weapon.GetName() << std::endl;
 		std::cout << "Weapon min range: " << int(weapon.GetMinRange()) << std::endl;

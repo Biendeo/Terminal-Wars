@@ -20,22 +20,81 @@ namespace TerminalWars {
 		YELLOW
 	};
 
-	// TODO: Finish MapTileType
 	enum class MapTileType : char {
 		NONE,
+		FOREST,
+		MISSILE_SILO,
+		MISSILE_SILO_USED,
+		MOUNTAIN,
+		PIPE,
+		PIPE_SEAM,
 		PLAIN,
+		REEF,
+		RIVER,
+		ROAD,
+		SEA,
+		SHOAL,
+		// TODO: Make this team generic (will involve other stuff).
 		NONE_CITY,
 		RED_CITY,
 		BLUE_CITY,
 		GREEN_CITY,
-		YELLOW_CITY
+		YELLOW_CITY,
+		NONE_HQ,
+		RED_HQ,
+		BLUE_HQ,
+		GREEN_HQ,
+		YELLOW_HQ,
+		NONE_BASE,
+		RED_BASE,
+		BLUE_BASE,
+		GREEN_BASE,
+		YELLOW_BASE,
+		NONE_PORT,
+		RED_PORT,
+		BLUE_PORT,
+		GREEN_PORT,
+		YELLOW_PORT,
+		NONE_AIRPORT,
+		RED_AIRPORT,
+		BLUE_AIRPORT,
+		GREEN_AIRPORT,
+		YELLOW_AIRPORT,
+		NONE_TOWER,
+		RED_TOWER,
+		BLUE_TOWER,
+		GREEN_TOWER,
+		YELLOW_TOWER
 	};
 
-	// TODO: Finish UnitType
 	enum class UnitType : char {
 		NONE,
 		INFANTRY,
-		MECH
+		MECH,
+		RECON,
+		TANK,
+		MD_TANK,
+		NEOTANK,
+		MEGATANK,
+		APC,
+		ARTILLERY,
+		ROCKETS,
+		ANTI_AIR,
+		MISSILES,
+		PIPERUNNER,
+		OOZIUM,
+		BATTLESHIP,
+		CRUISER,
+		LANDER,
+		SUB,
+		BLACK_BOAT,
+		CARRIER,
+		FIGHTER,
+		BOMBER,
+		B_COPTER,
+		T_COPTER,
+		STEALTH,
+		BLACK_BOMB
 	};
 
 	enum class MovementType : char {

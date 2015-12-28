@@ -1,9 +1,11 @@
 #include <string>
 #include "UnitData.h"
+#include "Weapon.h"
+#include "Data.h"
 
 
 namespace TerminalWars {
-	UnitData::UnitData(UnitType type, std::string name, char displayChar, Color color, MoneyCost cost, MovementType movementType, Movement maxMovement, Vision vision) {
+	UnitData::UnitData(UnitType type, std::string name, char displayChar, MoneyCost cost, MovementType movementType, Movement maxMovement, Movement maxFuel, Vision vision, WeaponType weapon1, WeaponType weapon2) {
 		// TODO: All of this.
 		this->type = type;
 		this->name = name;
@@ -11,7 +13,10 @@ namespace TerminalWars {
 		this->cost = cost;
 		this->movementType = movementType;
 		this->maxMovement = maxMovement;
+		this->maxFuel = maxFuel;
 		this->vision = vision;
+		this->weapon1 = weapon1;
+		this->weapon2 = weapon2;
 	}
 
 
@@ -39,14 +44,19 @@ namespace TerminalWars {
 		return maxMovement;
 	}
 
+	Movement UnitData::GetMaxFuel() {
+		return maxFuel;
+	}
+
 	Vision UnitData::GetVision() {
 		return vision;
 	}
-	
-	BaseDamage UnitData::GetBaseDamage(UnitType defender) {
-		// TODO: Make this a lot more professional than it is.
-		// I should not rely on the fact that enums are in numerical order.
-		return baseDamage.at(static_cast<int>(defender));
+
+	Weapon UnitData::GetWeapon1() {
+		return Data::GetWeaponData(weapon1);
+	}
+	Weapon UnitData::GetWeapon2() {
+		return Data::GetWeaponData(weapon2);
 	}
 
 	char UnitData::GetDisplayChar() {

@@ -15,6 +15,8 @@ namespace TerminalWars {
 		Color GetColor();
 
 		private:
+		// TODO: More properties.
+		// TODO: Transport carry properties.
 		UnitType type;
 		std::string givenName;
 		Team team;
