@@ -30,13 +30,15 @@ namespace TerminalWars {
 		mapTiles.clear();
 	}
 
-	MapTile Data::GetMapTileData(MapTileType type) {
+	MapTile Data::GetMapTileData(MapTileType type, bool silent = false) {
 		try {
 			return mapTiles.at(type);
 		}
 		catch (const std::out_of_range& oor) {
-			std::cerr << "GetMapTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
-			std::cerr << oor.what() << std::endl;
+			if (!silent) {
+				std::cerr << "GetMapTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
+				std::cerr << oor.what() << std::endl;
+			}
 		}
 
 		return GetMapTileData(MapTileType::NONE);
@@ -47,13 +49,15 @@ namespace TerminalWars {
 		return int(mapTiles.size());
 	}
 
-	UnitData Data::GetUnitData(UnitType type) {
+	UnitData Data::GetUnitData(UnitType type, bool silent = false) {
 		try {
 			return units.at(type);
 		}
 		catch (const std::out_of_range& oor) {
-			std::cerr << "GetUnitTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
-			std::cerr << oor.what() << std::endl;
+			if (!silent) {
+				std::cerr << "GetUnitTileData() could not find type " << static_cast<int>(type) << "." << std::endl;
+				std::cerr << oor.what() << std::endl;
+			}
 		}
 
 		return GetUnitData(UnitType::NONE);
@@ -64,13 +68,15 @@ namespace TerminalWars {
 		return int(units.size());
 	}
 
-	Weapon Data::GetWeaponData(WeaponType type) {
+	Weapon Data::GetWeaponData(WeaponType type, bool silent = false) {
 		try {
 			return weapons.at(type);
 		}
 		catch (const std::out_of_range& oor) {
-			std::cerr << "GetWeaponData() could not find type " << static_cast<int>(type) << "." << std::endl;
-			std::cerr << oor.what() << std::endl;
+			if (!silent) {
+				std::cerr << "GetWeaponData() could not find type " << static_cast<int>(type) << "." << std::endl;
+				std::cerr << oor.what() << std::endl;
+			}
 		}
 
 		return GetWeaponData(WeaponType::NONE);
@@ -81,13 +87,15 @@ namespace TerminalWars {
 		return int(weapons.size());
 	}
 
-	BaseDamage Data::GetBaseDamage(UnitType attacker, UnitType defender, bool primary) {
+	BaseDamage Data::GetBaseDamage(UnitType attacker, UnitType defender, bool primary, bool silent) {
 		try {
 			return baseDamage.at(MakeDamageKey(attacker, defender, primary));
 		}
 		catch (const std::out_of_range& oor) {
-			std::cerr << "GetBaseDamage() could not find " << static_cast<int>(attacker) << " attacking " << static_cast<int>(defender) << " with primary? " << primary << std::endl;
-			std::cerr << oor.what() << std::endl;
+			if (!silent) {
+				std::cerr << "GetBaseDamage() could not find " << static_cast<int>(attacker) << " attacking " << static_cast<int>(defender) << " with primary? " << primary << std::endl;
+				std::cerr << oor.what() << std::endl;
+			}
 		}
 
 		return 0;

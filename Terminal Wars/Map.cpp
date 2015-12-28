@@ -20,7 +20,6 @@ namespace TerminalWars {
 
 
 	MapTileType Map::GetTile(int x, int y) {
-		// TODO: Figure out how to go "using namespace MapTileType".
 		if (x >= GetWidth()) {
 			return MapTileType::NONE;
 		} else if (y >= GetHeight()) {
