@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Terminal Wars", "Terminal W
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestTW", "TestTW\TestTW.vcxproj", "{23528171-6AEA-4963-AB53-38B885F2A41B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maps", "Maps", "{75E6FA75-A877-40F5-8C6C-FBDB16E8BFB0}"
+	ProjectSection(SolutionItems) = preProject
+		Maps\Spann-Island.twmap = Maps\Spann-Island.twmap
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

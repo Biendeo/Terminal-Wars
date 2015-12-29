@@ -1,12 +1,26 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 #include <stdexcept>
+#include <vector>
 #include "Constants.h"
 #include "Data.h"
 #include "Map.h"
+#include "rlutil.h"
 
 namespace TerminalWars {
-	Map::Map() {
-		// TODO
+	Map::Map(int mapNumber, std::string customMap) {
+		switch (mapNumber) {
+			case 0:
+				name = customMap;
+				LoadCustomMap(customMap);
+				break;
+			case 1:
+			default:
+				name = "Spann Island";
+				LoadCustomMap("../Maps/Spann-Island.twmap");
+				break;
+		}
 	}
 
 
@@ -19,15 +33,21 @@ namespace TerminalWars {
 	}
 
 
-	MapTileType Map::GetTile(int x, int y) {
-		// TODO: Error checking?
-		if (x >= GetWidth()) {
-			return MapTileType::NONE;
-		} else if (y >= GetHeight()) {
-			return MapTileType::NONE;
-		} else {
+	MapTileType Map::GetTile(int x, int y, bool silent) {
+		try {
 			return map.at(x).at(y);
 		}
+		catch (const std::out_of_range& oor) {
+			if (!silent) {
+				std::cerr << "Map::CaptureBuilding() was given a bad range (" << x << ", " << y << ")." << std::endl;
+				std::cerr << oor.what() << std::endl;
+			}
+			return MapTileType::NONE;
+		}
+	}
+
+	std::string Map::GetName() {
+		return name;
 	}
 
 	int Map::GetWidth() {
@@ -36,6 +56,24 @@ namespace TerminalWars {
 
 	int Map::GetHeight() {
 		return height;
+	}
+
+	void Map::ShowMap() {
+		// TODO: Make this more flexible within the UI by using the screen size
+		// and scrolling along if larger.
+		rlutil::cls();
+		// TODO: Use iterators rather than ints.
+		for (int j = 0; j < height; j++) {
+			for (int i = 0; i < width; i++) {
+				MapTile currentTile = Data::GetMapTileData(map.at(j).at(i), true);
+				rlutil::saveDefaultColor();
+				rlutil::setColor(currentTile.GetForegroundColor());
+				rlutil::setBackgroundColor(currentTile.GetBackgroundColor());
+				std::cout << currentTile.GetDisplayChar();
+				rlutil::resetColor();
+			}
+			std::cout << std::endl;
+		}
 	}
 
 	void Map::CaptureBuilding(int x, int y, Team team) {
@@ -191,5 +229,217 @@ namespace TerminalWars {
 			return;
 		}
 	}
+	
+	void Map::LoadCustomMap(std::string customMap) {
+		/**
+
+		To create a custom map, create an empty text file, and use the following
+		characters to indicate the map tiles. Do not include any unknown or
+		extra characters, or the program might have unexpected behaviour.
+
+		  - NONE (DO NOT INTENTIONALLY USE THIS ONE)
+		L - FOREST
+		M - MISSILE_SILO
+		m - MISSILE_SILO_USED
+		< - MOUNTAIN
+		N - PIPE
+		n - PIPE_SEAM
+		P - PLAIN
+		K - REEF
+		I - RIVER
+		U - ROAD
+		O - SEA
+		o - SHOAL
+		1 - NONE_CITY
+		Q - RED_CITY
+		A - BLUE_CITY
+		q - GREEN_CITY
+		a - YELLOW_CITY
+		2 - NONE_HQ
+		W - RED_HQ
+		S - BLUE_HQ
+		w - GREEN_HQ
+		s - YELLOW_HQ
+		3 - NONE_BASE
+		E - RED_BASE
+		D - BLUE_BASE
+		e - GREEN_BASE
+		d - YELLOW_BASE
+		4 - NONE_PORT
+		R - RED_PORT
+		F - BLUE_PORT
+		r - GREEN_PORT
+		f - YELLOW_PORT
+		5 - NONE_AIRPORT
+		T - RED_AIRPORT
+		G - BLUE_AIRPORT
+		t - GREEN_AIRPORT
+		g - YELLOW_AIRPORT
+		6 - NONE_TOWER
+		Y - RED_TOWER
+		H - BLUE_TOWER
+		y - GREEN_TOWER
+		h - YELLOW_TOWER
+
+		*/
+
+		ifstream mapFile;
+		mapFile.open(customMap, ios::in);
+		if (!mapFile.is_open()) {
+			std::cerr << "There was an error opening " + customMap + "." << std::endl;
+			return;
+		}
+
+		//map.push_back(std::vector<MapTileType>());
+		std::vector<MapTileType> temp;
+
+		char c;
+		while (mapFile >> noskipws >> c) {
+			switch (c) {
+				case '\n':
+					map.push_back(temp);
+					width = int(temp.size());
+					temp.clear();
+					break;
+				case ' ':
+				default:
+					temp.push_back(MapTileType::NONE);
+					break;
+				case 'L':
+					temp.push_back(MapTileType::FOREST);
+					break;
+				case 'M':
+					temp.push_back(MapTileType::MISSILE_SILO);
+					break;
+				case 'm':
+					temp.push_back(MapTileType::MISSILE_SILO_USED);
+					break;
+				case '<':
+					temp.push_back(MapTileType::MOUNTAIN);
+					break;
+				case 'N':
+					temp.push_back(MapTileType::PIPE);
+					break;
+				case 'n':
+					temp.push_back(MapTileType::PIPE_SEAM);
+					break;
+				case 'P':
+					temp.push_back(MapTileType::PLAIN);
+					break;
+				case 'K':
+					temp.push_back(MapTileType::REEF);
+					break;
+				case 'I':
+					temp.push_back(MapTileType::RIVER);
+					break;
+				case 'U':
+					temp.push_back(MapTileType::ROAD);
+					break;
+				case 'O':
+					temp.push_back(MapTileType::SEA);
+					break;
+				case 'o':
+					temp.push_back(MapTileType::SHOAL);
+					break;
+				case '1':
+					temp.push_back(MapTileType::NONE_CITY);
+					break;
+				case 'Q':
+					temp.push_back(MapTileType::RED_CITY);
+					break;
+				case 'A':
+					temp.push_back(MapTileType::BLUE_CITY);
+					break;
+				case 'q':
+					temp.push_back(MapTileType::GREEN_CITY);
+					break;
+				case 'a':
+					temp.push_back(MapTileType::YELLOW_CITY);
+					break;
+				case '2':
+					temp.push_back(MapTileType::NONE_HQ);
+					break;
+				case 'W':
+					temp.push_back(MapTileType::RED_HQ);
+					break;
+				case 'S':
+					temp.push_back(MapTileType::BLUE_HQ);
+					break;
+				case 'w':
+					temp.push_back(MapTileType::GREEN_HQ);
+					break;
+				case 's':
+					temp.push_back(MapTileType::YELLOW_HQ);
+					break;
+				case '3':
+					temp.push_back(MapTileType::NONE_BASE);
+					break;
+				case 'E':
+					temp.push_back(MapTileType::RED_BASE);
+					break;
+				case 'D':
+					temp.push_back(MapTileType::BLUE_BASE);
+					break;
+				case 'e':
+					temp.push_back(MapTileType::GREEN_BASE);
+					break;
+				case 'd':
+					temp.push_back(MapTileType::YELLOW_BASE);
+					break;
+				case '4':
+					temp.push_back(MapTileType::NONE_PORT);
+					break;
+				case 'R':
+					temp.push_back(MapTileType::RED_PORT);
+					break;
+				case 'F':
+					temp.push_back(MapTileType::BLUE_PORT);
+					break;
+				case 'r':
+					temp.push_back(MapTileType::GREEN_PORT);
+					break;
+				case 'f':
+					temp.push_back(MapTileType::YELLOW_PORT);
+					break;
+				case '5':
+					temp.push_back(MapTileType::NONE_AIRPORT);
+					break;
+				case 'T':
+					temp.push_back(MapTileType::RED_AIRPORT);
+					break;
+				case 'G':
+					temp.push_back(MapTileType::BLUE_AIRPORT);
+					break;
+				case 't':
+					temp.push_back(MapTileType::GREEN_AIRPORT);
+					break;
+				case 'g':
+					temp.push_back(MapTileType::YELLOW_AIRPORT);
+					break;
+				case '6':
+					temp.push_back(MapTileType::NONE_TOWER);
+					break;
+				case 'Y':
+					temp.push_back(MapTileType::RED_TOWER);
+					break;
+				case 'H':
+					temp.push_back(MapTileType::BLUE_TOWER);
+					break;
+				case 'y':
+					temp.push_back(MapTileType::GREEN_TOWER);
+					break;
+				case 'h':
+					temp.push_back(MapTileType::YELLOW_TOWER);
+					break;
+			}
+		}
+
+		map.push_back(temp);
+
+		mapFile.close();
+		
+		height = map.size();
+	}
+
 }
 

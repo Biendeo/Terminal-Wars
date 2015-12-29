@@ -10,12 +10,14 @@
 
 void test1();
 void test2();
+void test3();
 
 int main() {
 	rlutil::hidecursor();
 
 	test1();
 	test2();
+	test3();
 
 	return EXIT_SUCCESS;
 }
@@ -131,6 +133,18 @@ void test2() {
 		rlutil::anykey();
 		rlutil::cls();
 	}
+}
 
-	//rlutil::anykey();
+void test3() {
+	using namespace std;
+	using namespace TerminalWars;
+	rlutil::cls();
+	cout << "Press any key to begin TEST 3" << endl;
+	rlutil::getkey();
+
+	Data d;
+	Map testMap = Map(1);
+	testMap.ShowMap();
+
+	rlutil::getkey();
 }
