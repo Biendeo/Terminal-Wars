@@ -12,6 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maps", "Maps", "{75E6FA75-A
 		Maps\Spann-Island.twmap = Maps\Spann-Island.twmap
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataValues", "DataValues", "{EC084CF2-64D6-4CEC-9B8A-D453D23B6067}"
+	ProjectSection(SolutionItems) = preProject
+		DataValues\Damage.csv = DataValues\Damage.csv
+		DataValues\MapTiles.csv = DataValues\MapTiles.csv
+		DataValues\Units.csv = DataValues\Units.csv
+		DataValues\Weapons.csv = DataValues\Weapons.csv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

@@ -1,0 +1,21 @@
+NONE,None,0,0,0,0,1
+M_GUN,Machine Gun,1,1,-1,0,1
+BAZOOKA,Bazooka,1,1,3,5,1
+T_CANNON,Cannon,1,1,9,5,1
+MD_CANNON,Cannon,1,1,8,5,1
+NEO_CANNON,New Cannon,1,1,9,5,1
+MEGA_CANNON,Mega Cannon,1,1,3,10,1
+ART_CANNON,Cannon,2,3,9,5,0
+ROCKETS,Rockets,3,5,6,5,0
+VULCAN,Vulcan,1,1,9,5,1
+G_MISSILES,Missiles,3,5,6,5,0
+PIPE,Pipe Gun,2,5,9,5,0
+F_MISSILES,Missiles,1,1,9,5,1
+BOMBS,Bombs,1,1,9,5,1
+COP_MISSILES,Missiles,1,1,6,5,1
+OMNIMISSILES,Omnimissiles,1,1,6,5,1
+BSHIP_CANNON,Cannon,2,6,6,5,0
+CRU_MISSILES,Missiles,1,1,6,5,1
+CRU_AA,Anti-Air Gun,1,1,-1,0,1
+TORPEDOS,Torpedoes,1,1,6,5,1
+CAR_MISSILES,Anti-Air Missiles,3,8,9,5,0

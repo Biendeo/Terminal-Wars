@@ -290,7 +290,7 @@ namespace TerminalWars {
 			return;
 		}
 
-		//map.push_back(std::vector<MapTileType>());
+		// TODO: Clean up this process a little.
 		std::vector<MapTileType> temp;
 
 		char c;

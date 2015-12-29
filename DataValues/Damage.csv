@@ -1,0 +1,418 @@
+Infantry,Infantry,1,55
+Infantry,Mech,1,45
+Infantry,Recon,1,12
+Infantry,Tank,1,5
+Infantry,MD Tank,1,1
+Infantry,Neotank,1,1
+Infantry,Megatank,1,1
+Infantry,Anti-Air,1,5
+Infantry,Artillery,1,15
+Infantry,Rockets,1,25
+Infantry,Piperunner,1,5
+Infantry,Missiles,1,25
+Infantry,APC,1,14
+Infantry,Oozium,1,20
+Infantry,Battle Copter,1,7
+Infantry,Transport Copter,1,30
+Mech,Infantry,0,65
+Mech,Mech,0,55
+Mech,Recon,1,85
+Mech,Recon,0,18
+Mech,Tank,1,55
+Mech,Tank,0,6
+Mech,MD Tank,1,15
+Mech,MD Tank,0,1
+Mech,Neotank,1,15
+Mech,Neotank,0,1
+Mech,Megatank,1,5
+Mech,Megatank,0,1
+Mech,Anti-Air,1,65
+Mech,Anti-Air,0,6
+Mech,Artillery,1,70
+Mech,Artillery,0,32
+Mech,Rockets,1,85
+Mech,Rockets,0,35
+Mech,Piperunner,1,55
+Mech,Piperunner,0,6
+Mech,Missiles,1,85
+Mech,Missiles,0,35
+Mech,APC,1,75
+Mech,APC,0,20
+Mech,Oozium,1,30
+Mech,Oozium,0,20
+Mech,Battle Copter,0,9
+Mech,Transport Copter,0,35
+Recon,Infantry,1,70
+Recon,Mech,1,65
+Recon,Recon,1,35
+Recon,Tank,1,6
+Recon,MD Tank,1,1
+Recon,Neotank,1,1
+Recon,Megatank,1,1
+Recon,Anti-Air,1,4
+Recon,Artillery,1,45
+Recon,Rockets,1,55
+Recon,Piperunner,1,6
+Recon,Missiles,1,28
+Recon,APC,1,45
+Recon,Oozium,1,20
+Recon,Battle Copter,1,10
+Recon,Transport Copter,1,35
+Tank,Infantry,0,75
+Tank,Mech,0,70
+Tank,Recon,1,85
+Tank,Recon,0,40
+Tank,Tank,1,55
+Tank,Tank,0,6
+Tank,MD Tank,1,15
+Tank,MD Tank,0,1
+Tank,Neotank,1,15
+Tank,Neotank,0,1
+Tank,Megatank,1,10
+Tank,Megatank,0,1
+Tank,Anti-Air,1,65
+Tank,Anti-Air,0,6
+Tank,Artillery,1,70
+Tank,Artillery,0,45
+Tank,Rockets,1,85
+Tank,Rockets,0,55
+Tank,Piperunner,1,55
+Tank,Piperunner,0,6
+Tank,Missiles,1,85
+Tank,Missiles,0,30
+Tank,APC,1,75
+Tank,APC,0,45
+Tank,Oozium,1,20
+Tank,Oozium,0,20
+Tank,Battle Copter,0,10
+Tank,Transport Copter,0,40
+Tank,Cruiser,1,5
+Tank,Submarine,1,1
+Tank,Battleship,1,1
+Tank,Carrier,1,1
+Tank,Lander,1,10
+Tank,Black Boat,1,10
+MD Tank,Infantry,0,105
+MD Tank,Mech,0,95
+MD Tank,Recon,1,105
+MD Tank,Recon,0,45
+MD Tank,Tank,1,85
+MD Tank,Tank,0,8
+MD Tank,MD Tank,1,55
+MD Tank,MD Tank,0,1
+MD Tank,Neotank,1,45
+MD Tank,Neotank,0,1
+MD Tank,Megatank,1,25
+MD Tank,Megatank,0,1
+MD Tank,Anti-Air,1,105
+MD Tank,Anti-Air,0,7
+MD Tank,Artillery,1,105
+MD Tank,Artillery,0,45
+MD Tank,Rockets,1,105
+MD Tank,Rockets,0,55
+MD Tank,Piperunner,1,85
+MD Tank,Piperunner,0,8
+MD Tank,Missiles,1,105
+MD Tank,Missiles,0,35
+MD Tank,APC,1,105
+MD Tank,APC,0,45
+MD Tank,Oozium,1,30
+MD Tank,Oozium,0,20
+MD Tank,Battle Copter,0,12
+MD Tank,Transport Copter,0,45
+MD Tank,Cruiser,1,30
+MD Tank,Submarine,1,10
+MD Tank,Battleship,1,10
+MD Tank,Carrier,1,10
+MD Tank,Lander,1,35
+MD Tank,Black Boat,1,35
+Neotank,Infantry,0,125
+Neotank,Mech,0,115
+Neotank,Recon,1,125
+Neotank,Recon,0,65
+Neotank,Tank,1,105
+Neotank,Tank,0,10
+Neotank,MD Tank,1,75
+Neotank,MD Tank,0,1
+Neotank,Neotank,1,55
+Neotank,Neotank,0,1
+Neotank,Megatank,1,35
+Neotank,Megatank,0,1
+Neotank,Anti-Air,1,115
+Neotank,Anti-Air,0,17
+Neotank,Artillery,1,115
+Neotank,Artillery,0,65
+Neotank,Rockets,1,125
+Neotank,Rockets,0,75
+Neotank,Piperunner,1,105
+Neotank,Piperunner,0,10
+Neotank,Missiles,1,125
+Neotank,Missiles,0,55
+Neotank,APC,1,125
+Neotank,APC,0,65
+Neotank,Oozium,1,35
+Neotank,Oozium,0,20
+Neotank,Battle Copter,0,22
+Neotank,Transport Copter,0,55
+Neotank,Cruiser,1,30
+Neotank,Submarine,1,15
+Neotank,Battleship,1,15
+Neotank,Carrier,1,15
+Neotank,Lander,1,40
+Neotank,Black Boat,1,40
+Megatank,Infantry,0,135
+Megatank,Mech,0,125
+Megatank,Recon,1,195
+Megatank,Recon,0,65
+Megatank,Tank,1,180
+Megatank,Tank,0,10
+Megatank,MD Tank,1,125
+Megatank,MD Tank,0,1
+Megatank,Neotank,1,115
+Megatank,Neotank,0,1
+Megatank,Megatank,1,65
+Megatank,Megatank,0,1
+Megatank,Anti-Air,1,195
+Megatank,Anti-Air,0,17
+Megatank,Artillery,1,195
+Megatank,Artillery,0,65
+Megatank,Rockets,1,195
+Megatank,Rockets,0,75
+Megatank,Piperunner,1,180
+Megatank,Piperunner,0,10
+Megatank,Missiles,1,195
+Megatank,Missiles,0,55
+Megatank,APC,1,195
+Megatank,APC,0,65
+Megatank,Oozium,1,45
+Megatank,Oozium,0,30
+Megatank,Battle Copter,0,22
+Megatank,Transport Copter,0,55
+Megatank,Cruiser,1,65
+Megatank,Submarine,1,45
+Megatank,Battleship,1,45
+Megatank,Carrier,1,45
+Megatank,Lander,1,75
+Megatank,Black Boat,1,105
+Anti-Air,Infantry,1,105
+Anti-Air,Mech,1,105
+Anti-Air,Recon,1,60
+Anti-Air,Tank,1,25
+Anti-Air,MD Tank,1,10
+Anti-Air,Neotank,1,5
+Anti-Air,Megatank,1,1
+Anti-Air,Anti-Air,1,45
+Anti-Air,Artillery,1,50
+Anti-Air,Rockets,1,55
+Anti-Air,Piperunner,1,25
+Anti-Air,Missiles,1,55
+Anti-Air,APC,1,50
+Anti-Air,Oozium,1,30
+Anti-Air,Fighter,1,65
+Anti-Air,Bomber,1,75
+Anti-Air,Stealth,1,75
+Anti-Air,Battle Copter,1,105
+Anti-Air,Transport Copter,1,105
+Anti-Air,Black Bomb,1,120
+Artillery,Infantry,1,90
+Artillery,Mech,1,85
+Artillery,Recon,1,80
+Artillery,Tank,1,70
+Artillery,MD Tank,1,45
+Artillery,Neotank,1,40
+Artillery,Megatank,1,15
+Artillery,Anti-Air,1,75
+Artillery,Artillery,1,75
+Artillery,Rockets,1,80
+Artillery,Piperunner,1,70
+Artillery,Missiles,1,80
+Artillery,APC,1,70
+Artillery,Oozium,1,5
+Artillery,Cruiser,1,50
+Artillery,Submarine,1,60
+Artillery,Battleship,1,40
+Artillery,Carrier,1,45
+Artillery,Lander,1,55
+Artillery,Black Boat,1,55
+Rockets,Infantry,1,90
+Rockets,Mech,1,85
+Rockets,Recon,1,80
+Rockets,Tank,1,70
+Rockets,MD Tank,1,45
+Rockets,Neotank,1,40
+Rockets,Megatank,1,15
+Rockets,Anti-Air,1,75
+Rockets,Artillery,1,75
+Rockets,Rockets,1,80
+Rockets,Piperunner,1,70
+Rockets,Missiles,1,80
+Rockets,APC,1,70
+Rockets,Oozium,1,5
+Rockets,Cruiser,1,50
+Rockets,Submarine,1,60
+Rockets,Battleship,1,40
+Rockets,Carrier,1,45
+Rockets,Lander,1,55
+Rockets,Black Boat,1,55
+Piperunner,Infantry,1,95
+Piperunner,Mech,1,90
+Piperunner,Recon,1,90
+Piperunner,Tank,1,80
+Piperunner,MD Tank,1,55
+Piperunner,Neotank,1,50
+Piperunner,Megatank,1,25
+Piperunner,Anti-Air,1,85
+Piperunner,Artillery,1,80
+Piperunner,Rockets,1,85
+Piperunner,Piperunner,1,80
+Piperunner,Missiles,1,90
+Piperunner,APC,1,80
+Piperunner,Oozium,1,15
+Piperunner,Fighter,1,65
+Piperunner,Bomber,1,75
+Piperunner,Stealth,1,75
+Piperunner,Battle Copter,1,105
+Piperunner,Transport Copter,1,105
+Piperunner,Black Bomb,1,120
+Piperunner,Cruiser,1,60
+Piperunner,Submarine,1,85
+Piperunner,Battleship,1,55
+Piperunner,Carrier,1,60
+Piperunner,Lander,1,60
+Piperunner,Black Boat,1,60
+Missiles,Fighter,1,100
+Missiles,Bomber,1,100
+Missiles,Stealth,1,100
+Missiles,Battle Copter,1,115
+Missiles,Transport Copter,1,115
+Missiles,Black Bomb,1,120
+Fighter,Fighter,1,55
+Fighter,Bomber,1,100
+Fighter,Stealth,1,85
+Fighter,Battle Copter,1,120
+Fighter,Transport Copter,1,120
+Fighter,Black Bomb,1,120
+Bomber,Infantry,1,110
+Bomber,Mech,1,110
+Bomber,Recon,1,105
+Bomber,Tank,1,105
+Bomber,MD Tank,1,95
+Bomber,Neotank,1,90
+Bomber,Megatank,1,35
+Bomber,Anti-Air,1,95
+Bomber,Artillery,1,105
+Bomber,Rockets,1,105
+Bomber,Piperunner,1,105
+Bomber,Missiles,1,105
+Bomber,APC,1,105
+Bomber,Oozium,1,35
+Bomber,Cruiser,1,50
+Bomber,Submarine,1,95
+Bomber,Battleship,1,75
+Bomber,Carrier,1,105
+Bomber,Lander,1,95
+Bomber,Black Boat,1,75
+Stealth,Infantry,1,90
+Stealth,Mech,1,90
+Stealth,Recon,1,85
+Stealth,Tank,1,75
+Stealth,MD Tank,1,70
+Stealth,Neotank,1,60
+Stealth,Megatank,1,15
+Stealth,Anti-Air,1,50
+Stealth,Artillery,1,75
+Stealth,Rockets,1,85
+Stealth,Piperunner,1,80
+Stealth,Missiles,1,85
+Stealth,APC,1,85
+Stealth,Oozium,1,30
+Stealth,Fighter,1,45
+Stealth,Bomber,1,70
+Stealth,Stealth,1,55
+Stealth,Battle Copter,1,85
+Stealth,Transport Copter,1,95
+Stealth,Black Bomb,1,120
+Stealth,Cruiser,1,35
+Stealth,Submarine,1,55
+Stealth,Battleship,1,45
+Stealth,Carrier,1,45
+Stealth,Lander,1,65
+Stealth,Black Boat,1,65
+Battle Copter,Infantry,0,75
+Battle Copter,Mech,0,75
+Battle Copter,Recon,1,55
+Battle Copter,Recon,0,30
+Battle Copter,Tank,1,5
+Battle Copter,Tank,0,6
+Battle Copter,MD Tank,1,25
+Battle Copter,MD Tank,0,1
+Battle Copter,Neotank,1,20
+Battle Copter,Neotank,0,1
+Battle Copter,Megatank,1,10
+Battle Copter,Megatank,0,1
+Battle Copter,Anti-Air,1,25
+Battle Copter,Anti-Air,0,6
+Battle Copter,Artillery,1,65
+Battle Copter,Artillery,0,25
+Battle Copter,Rockets,1,65
+Battle Copter,Rockets,0,35
+Battle Copter,Piperunner,1,55
+Battle Copter,Piperunner,0,6
+Battle Copter,Missiles,1,65
+Battle Copter,Missiles,0,35
+Battle Copter,APC,1,60
+Battle Copter,APC,0,20
+Battle Copter,Oozium,1,25
+Battle Copter,Oozium,0,20
+Battle Copter,Battle Copter,0,65
+Battle Copter,Transport Copter,0,95
+Battle Copter,Cruiser,1,25
+Battle Copter,Submarine,1,25
+Battle Copter,Battleship,1,25
+Battle Copter,Carrier,1,25
+Battle Copter,Lander,1,25
+Battle Copter,Black Boat,1,25
+Cruiser,Fighter,0,85
+Cruiser,Bomber,0,100
+Cruiser,Stealth,0,100
+Cruiser,Battle Copter,0,105
+Cruiser,Transport Copter,0,105
+Cruiser,Black Bomb,0,120
+Cruiser,Cruiser,1,25
+Cruiser,Submarine,1,90
+Cruiser,Battleship,1,5
+Cruiser,Carrier,1,5
+Cruiser,Lander,1,25
+Cruiser,Black Boat,1,25
+Submarine,Cruiser,1,25
+Submarine,Submarine,1,55
+Submarine,Battleship,1,65
+Submarine,Carrier,1,75
+Submarine,Lander,1,95
+Submarine,Black Boat,1,95
+Battleship,Infantry,1,95
+Battleship,Mech,1,90
+Battleship,Recon,1,90
+Battleship,Tank,1,80
+Battleship,MD Tank,1,55
+Battleship,Neotank,1,50
+Battleship,Megatank,1,25
+Battleship,Anti-Air,1,85
+Battleship,Artillery,1,80
+Battleship,Rockets,1,85
+Battleship,Piperunner,1,80
+Battleship,Missiles,1,90
+Battleship,APC,1,80
+Battleship,Oozium,1,20
+Battleship,Cruiser,1,95
+Battleship,Submarine,1,95
+Battleship,Battleship,1,50
+Battleship,Carrier,1,60
+Battleship,Lander,1,95
+Battleship,Black Boat,1,95
+Carrier,Fighter,1,100
+Carrier,Bomber,1,100
+Carrier,Stealth,1,100
+Carrier,Battle Copter,1,115
+Carrier,Transport Copter,1,115
+Carrier,Black Bomb,1,120

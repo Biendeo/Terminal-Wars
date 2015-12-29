@@ -1,0 +1,43 @@
+None,?,GREY,BLACK,0,0,0,0,0,0,0,0,0,0
+Forest,+,BROWN,GREEN,1,1,3,2,0,1,0,0,1,3
+Missile Silo,|,WHITE,DARKGREY,1,1,1,1,0,1,0,0,1,3
+Used Missile Silo,.,WHITE,DARKGREY,1,1,1,1,0,1,0,0,1,3
+Mountain,^,GREY,DARKGREY,2,1,0,0,0,1,0,0,1,4
+Pipe,=,GREY,GREEN,0,0,0,0,1,0,0,0,1,0
+Pipe Seam,-,GREY,GREEN,0,0,0,0,1,0,0,0,1,0
+Plain, ,GREEN,GREEN,1,1,2,1,0,1,0,0,1,1
+Reef,",",GREY,BLUE,0,0,0,0,0,0,2,2,1,1
+River,_,GREEN,BLUE,2,1,0,0,0,1,0,0,1,0
+Road,=,WHITE,GREY,1,1,1,1,0,1,0,0,1,0
+Sea, ,BLUE,BLUE,0,0,0,0,0,0,1,1,1,0
+Shoal,_,BLUE,BROWN,1,1,1,1,0,1,0,1,1,0
+Unoccupied City,$,WHITE,GREEN,1,1,1,1,0,1,0,0,1,3
+Red City,$,LIGHTRED,GREEN,1,1,1,1,0,1,0,0,1,3
+Blue City,$,LIGHTBLUE,GREEN,1,1,1,1,0,1,0,0,1,3
+Green City,$,LIGHTGREEN,GREEN,1,1,1,1,0,1,0,0,1,3
+Yellow City,$,YELLOW,GREEN,1,1,1,1,0,1,0,0,1,3
+Unoccupied HQ,@,WHITE,GREEN,1,1,1,1,0,1,0,0,1,4
+Red HQ,@,LIGHTRED,GREEN,1,1,1,1,0,1,0,0,1,4
+Blue HQ,@,LIGHTBLUE,GREEN,1,1,1,1,0,1,0,0,1,4
+Green HQ,@,LIGHTGREEN,GREEN,1,1,1,1,0,1,0,0,1,4
+Yellow HQ,@,YELLOW,GREEN,1,1,1,1,0,1,0,0,1,4
+Unoccupied Base,&,WHITE,GREEN,1,1,1,1,0,1,0,0,1,3
+Red Base,&,LIGHTRED,GREEN,1,1,1,1,0,1,0,0,1,3
+Blue Base,&,LIGHTBLUE,GREEN,1,1,1,1,0,1,0,0,1,3
+Green Base,&,LIGHTGREEN,GREEN,1,1,1,1,0,1,0,0,1,3
+Yellow Base,&,YELLOW,GREEN,1,1,1,1,0,1,0,0,1,3
+Unoccupied Port,%,WHITE,GREEN,1,1,1,1,0,1,1,1,1,3
+Red Port,%,LIGHTRED,GREEN,1,1,1,1,0,1,1,1,1,3
+Blue Port,%,LIGHTBLUE,GREEN,1,1,1,1,0,1,1,1,1,3
+Green Port,%,LIGHTGREEN,GREEN,1,1,1,1,0,1,1,1,1,3
+Yellow Port,%,YELLOW,GREEN,1,1,1,1,0,1,1,1,1,3
+Unoccupied Airport,A,WHITE,GREEN,1,1,1,1,0,1,0,0,1,3
+Red Airport,A,LIGHTRED,GREEN,1,1,1,1,0,1,0,0,1,3
+Blue Airport,A,LIGHTBLUE,GREEN,1,1,1,1,0,1,0,0,1,3
+Green Airport,A,LIGHTGREEN,GREEN,1,1,1,1,0,1,0,0,1,3
+Yellow Airport,A,YELLOW,GREEN,1,1,1,1,0,1,0,0,1,3
+Unoccupied Tower,!,WHITE,GREEN,1,1,1,1,0,1,0,0,1,3
+Red Tower,!,LIGHTRED,GREEN,1,1,1,1,0,1,0,0,1,3
+Blue Tower,!,LIGHTBLUE,GREEN,1,1,1,1,0,1,0,0,1,3
+Green Tower,!,LIGHTGREEN,GREEN,1,1,1,1,0,1,0,0,1,3
+Yellow Tower,!,YELLOW,GREEN,1,1,1,1,0,1,0,0,1,3

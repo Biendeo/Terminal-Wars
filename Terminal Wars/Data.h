@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <string>
 #include "Constants.h"
 #include "Map.h"
 #include "MapTile.h"
@@ -29,5 +30,12 @@ namespace TerminalWars {
 		static std::map<DamageKey, BaseDamage> baseDamage;
 
 		static DamageKey MakeDamageKey(UnitType attacker, UnitType defender, bool primary);
+		static MapTileType StringToMapTileType(std::string str);
+		static UnitType StringToUnitType(std::string str);
+		static MovementType StringToMovementType(std::string str);
+		static WeaponType StringToWeaponType(std::string str);
+		static Color StringToColor(std::string str);
+		static std::vector<std::string> SplitLine(std::string line, char delimiter);
+
 	};
 }
