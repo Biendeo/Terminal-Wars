@@ -12,12 +12,14 @@ void test1();
 void test2();
 void test3();
 
-int main() {
+int main(int argc, char *argv[]) {
 	rlutil::hidecursor();
 
 	test1();
 	test2();
 	test3();
+
+	rlutil::showcursor();
 
 	return EXIT_SUCCESS;
 }
