@@ -144,10 +144,14 @@ namespace TerminalWars {
 			if (currentSelect != totalMaps - 1) {
 				Map *m = new Map(selectedMap);
 				std::cout << m->GetName() << std::endl;
-				DrawMap(m, rlutil::tcols(), rlutil::trows() - 1, 0, 1, 0, 0);
+				// TODO: Add a small indicator telling how many of these are left.
+				std::cout << currentSelect + 1 << " out of " << totalMaps << std::endl;
+				DrawMap(m, rlutil::tcols(), rlutil::trows() - 2, 0, 2, 0, 0);
 				delete m;
 			} else {
 				std::cout << "Custom map!" << std::endl;
+				std::cout << currentSelect + 1 << " out of " << totalMaps << std::endl;
+				// TODO: Add a small indicator telling how many of these are left.
 				std::cout << "    ????    " << std::endl;
 				std::cout << "   ??????   " << std::endl;
 				std::cout << "   ??  ??   " << std::endl;
@@ -197,13 +201,13 @@ namespace TerminalWars {
 		// TODO: Use iterators rather than ints.
 		int y = yMap;
 		for (int j = yScreen; j < height + yScreen; j++) {
-			if (j + yMap >= m->GetHeight()) {
+			if (j + yMap >= m->GetHeight() + yScreen) {
 				break;
 			}
 			rlutil::locate(xScreen + 1, j + 1);
 			int x = xMap;
 			for (int i = xScreen; i < width + xScreen; i++) {
-				if (i + xMap >= m->GetWidth()) {
+				if (i + xMap >= m->GetWidth() + xScreen) {
 					break;
 				}
 				MapTile currentTile = Data::GetMapTileData(m->GetTile(x, y, true), true);
