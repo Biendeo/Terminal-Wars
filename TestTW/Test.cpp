@@ -33,7 +33,7 @@ void test1() {
 	rlutil::getkey();
 	rlutil::cls();
 
-	vector<string> testMenu;
+	std::vector<std::string> testMenu;
 	testMenu.push_back("ITEM 1 is plain old.");
 	testMenu.push_back("ITEM 2");
 	testMenu.push_back("ITEM 3");
@@ -145,8 +145,8 @@ void test3() {
 	rlutil::getkey();
 
 	Data d;
-	Map testMap = Map(1);
-	testMap.ShowMap();
+	Map *testMap = new Map("../Maps/Spann-Island.twmap");
+	DrawMap(testMap);
 
 	rlutil::getkey();
 }

@@ -9,18 +9,22 @@
 #include "rlutil.h"
 
 namespace TerminalWars {
-	Map::Map(int mapNumber, std::string customMap) {
-		switch (mapNumber) {
-			case 0:
-				name = customMap;
-				LoadCustomMap(customMap);
+	Map::Map(std::string customMap) {
+		LoadCustomMap(customMap);
+		int i = customMap.size() - 1;
+		while (true) {
+			if (customMap.at(i) == '.') {
+				customMap = customMap.substr(0, i);
+				--i;
+			} else if (customMap.at(i) == '\\' || customMap.at(i) == '/') {
+				customMap = customMap.substr(i + 1, customMap.size() - 1);
 				break;
-			case 1:
-			default:
-				name = "Spann Island";
-				LoadCustomMap("../Maps/Spann-Island.twmap");
+			} else if (i == 0) {
 				break;
+			}
+			--i;
 		}
+		name = customMap;
 	}
 
 
@@ -35,7 +39,7 @@ namespace TerminalWars {
 
 	MapTileType Map::GetTile(int x, int y, bool silent) {
 		try {
-			return map.at(x).at(y);
+			return map.at(y).at(x);
 		}
 		catch (const std::out_of_range& oor) {
 			if (!silent) {
@@ -56,24 +60,6 @@ namespace TerminalWars {
 
 	int Map::GetHeight() {
 		return height;
-	}
-
-	void Map::ShowMap() {
-		// TODO: Make this more flexible within the UI by using the screen size
-		// and scrolling along if larger.
-		rlutil::cls();
-		// TODO: Use iterators rather than ints.
-		for (int j = 0; j < height; j++) {
-			for (int i = 0; i < width; i++) {
-				MapTile currentTile = Data::GetMapTileData(map.at(j).at(i), true);
-				rlutil::saveDefaultColor();
-				rlutil::setColor(currentTile.GetForegroundColor());
-				rlutil::setBackgroundColor(currentTile.GetBackgroundColor());
-				std::cout << currentTile.GetDisplayChar();
-				rlutil::resetColor();
-			}
-			std::cout << std::endl;
-		}
 	}
 
 	void Map::CaptureBuilding(int x, int y, Team team) {
@@ -283,18 +269,18 @@ namespace TerminalWars {
 
 		*/
 
-		ifstream mapFile;
-		mapFile.open(customMap, ios::in);
+		std::ifstream mapFile;
+		mapFile.open(customMap, std::ios::in);
 		if (!mapFile.is_open()) {
 			std::cerr << "There was an error opening " + customMap + "." << std::endl;
-			return;
+			exit(4);
 		}
 
 		// TODO: Clean up this process a little.
 		std::vector<MapTileType> temp;
 
 		char c;
-		while (mapFile >> noskipws >> c) {
+		while (mapFile >> std::noskipws >> c) {
 			switch (c) {
 				case '\n':
 					map.push_back(temp);

@@ -6,13 +6,12 @@
 namespace TerminalWars {
 	class Map {
 		public:
-		Map(int mapNumber, std::string customMap = "");
+		Map(std::string customMap);
 		~Map();
 		MapTileType GetTile(int x, int y, bool silent = false);
 		std::string GetName();
 		int GetWidth();
 		int GetHeight();
-		void ShowMap();
 		void CaptureBuilding(int x, int y, Team team);
 
 		private:

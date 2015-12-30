@@ -36,6 +36,5 @@ namespace TerminalWars {
 		static WeaponType StringToWeaponType(std::string str);
 		static Color StringToColor(std::string str);
 		static std::vector<std::string> SplitLine(std::string line, char delimiter);
-
 	};
 }

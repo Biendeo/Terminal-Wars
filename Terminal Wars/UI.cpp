@@ -3,9 +3,11 @@
 #include "UI.h"
 #include "rlutil.h"
 #include "Constants.h"
+#include "Data.h"
+#include "MapTile.h"
 
 namespace TerminalWars {
-	int CreateMenu(int xPos, int yPos, int width, int height, vector<string> menuItems, int padding, bool cancelable, int defaultSelect, int unselectBack, int unselectFore, int selectBack, int selectFore, int disabledBack, int disabledFore, int disabledSelectBack, int disabledSelectFore) {
+	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> menuItems, int padding, bool cancelable, int defaultSelect, Color unselectBack, Color unselectFore, Color selectBack, Color selectFore, Color disabledBack, Color disabledFore, Color disabledSelectBack, Color disabledSelectFore) {
 		const int size = (int)menuItems.size();
 		int currentSelect = defaultSelect;
 		int currentTop;
@@ -102,25 +104,116 @@ namespace TerminalWars {
 		return chosenItem;
 	}
 
-	string DisableStringForMenu(string str) {
+	std::string DisableStringForMenu(std::string str) {
 		if (str.back() != disabledChar) {
 			str += disabledChar;
 		}
 		return str;
 	}
 
-	string EnableStringForMenu(string str) {
+	std::string EnableStringForMenu(std::string str) {
 		if (str.back() == disabledChar) {
 			str.pop_back();
 		}
 		return str;
 	}
 
-	bool IsStringDisabled(string str) {
+	bool IsStringDisabled(std::string str) {
 		if (str.back() == disabledChar) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	std::string SelectMap() {
+		int currentSelect = 0;
+		int totalMaps = 2;
+		std::string selectedMap = "";
+		while (true) {
+			rlutil::cls();
+			switch (currentSelect) {
+				case 0:
+				default:
+					selectedMap = "../Maps/Spann-Island.twmap";
+					break;
+				case 1:
+					selectedMap = "";
+					break;
+			}
+			if (currentSelect != totalMaps - 1) {
+				Map *m = new Map(selectedMap);
+				std::cout << m->GetName() << std::endl;
+				DrawMap(m, rlutil::tcols(), rlutil::trows() - 1, 0, 1, 0, 0);
+				delete m;
+			} else {
+				std::cout << "Custom map!" << std::endl;
+				std::cout << "    ????    " << std::endl;
+				std::cout << "   ??????   " << std::endl;
+				std::cout << "   ??  ??   " << std::endl;
+				std::cout << "       ??   " << std::endl;
+				std::cout << "      ??    " << std::endl;
+				std::cout << "     ??     " << std::endl;
+				std::cout << "     ??     " << std::endl;
+				std::cout << "            " << std::endl;
+				std::cout << "     ??     " << std::endl;
+				std::cout << "     ??     " << std::endl;
+			}
+
+			int keyPress = -1;
+			while ((keyPress != upKey || currentSelect <= 0) && (keyPress != downKey || currentSelect >= totalMaps - 1) && keyPress != confirmKey && keyPress != cancelKey) {
+				keyPress = rlutil::getkey();
+			}
+			switch (keyPress) {
+				case upKey:
+					--currentSelect;
+					break;
+				case downKey:
+					++currentSelect;
+					break;
+				case confirmKey:
+					if (currentSelect == totalMaps - 1) {
+						rlutil::showcursor();
+						std::cout << "Type your custom map path!" << std::endl;
+						std::cin >> selectedMap;
+						rlutil::hidecursor();
+					}
+					return selectedMap;
+				case cancelKey:
+					return "";
+			}
+		}
+		return "";
+	}
+
+	void DrawMap(Map *m, int width, int height, int xScreen, int yScreen, int xMap, int yMap) {
+		if (width == -1) {
+			width = rlutil::tcols();
+		}
+		if (height == -1) {
+			height = rlutil::trows();
+		}
+		rlutil::saveDefaultColor();
+		// TODO: Use iterators rather than ints.
+		int y = yMap;
+		for (int j = yScreen; j < height + yScreen; j++) {
+			if (j + yMap >= m->GetHeight()) {
+				break;
+			}
+			rlutil::locate(xScreen + 1, j + 1);
+			int x = xMap;
+			for (int i = xScreen; i < width + xScreen; i++) {
+				if (i + xMap >= m->GetWidth()) {
+					break;
+				}
+				MapTile currentTile = Data::GetMapTileData(m->GetTile(x, y, true), true);
+				rlutil::setColor(currentTile.GetForegroundColor());
+				rlutil::setBackgroundColor(currentTile.GetBackgroundColor());
+				std::cout << currentTile.GetDisplayChar();
+				++x;
+			}
+			++y;
+		}
+		rlutil::resetColor();
 	}
 }

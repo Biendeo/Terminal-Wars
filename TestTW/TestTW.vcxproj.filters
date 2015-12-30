@@ -39,6 +39,9 @@
     <ClCompile Include="..\Terminal Wars\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Terminal Wars\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Terminal Wars\rlutil.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Terminal Wars\Weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Terminal Wars\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

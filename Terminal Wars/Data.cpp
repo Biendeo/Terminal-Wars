@@ -19,10 +19,10 @@ namespace TerminalWars {
 		std::string weaponData = "../DataValues/Weapons.csv";
 		std::string damageData = "../DataValues/Damage.csv";
 		std::string currentLine;
-		ifstream file;
+		std::ifstream file;
 
 		/// Map Tile Data
-		file.open(mapTileData, ios::in);
+		file.open(mapTileData, std::ios::in);
 		if (!file.is_open()) {
 			std::cerr << "There was an error opening " + mapTileData + "." << std::endl;
 			exit(4);
@@ -35,7 +35,7 @@ namespace TerminalWars {
 
 		/// Weapon Data
 		// TODO: Find the ammo cost for weapons.
-		file.open(weaponData, ios::in);
+		file.open(weaponData, std::ios::in);
 		if (!file.is_open()) {
 			std::cerr << "There was an error opening " + weaponData + "." << std::endl;
 			exit(4);
@@ -47,7 +47,7 @@ namespace TerminalWars {
 		file.close();
 
 		/// Unit Data
-		file.open(unitData, ios::in);
+		file.open(unitData, std::ios::in);
 		if (!file.is_open()) {
 			std::cerr << "There was an error opening " + unitData + "." << std::endl;
 			exit(4);
@@ -59,7 +59,7 @@ namespace TerminalWars {
 		file.close();
 
 		/// Damage Data
-		file.open(damageData, ios::in);
+		file.open(damageData, std::ios::in);
 		if (!file.is_open()) {
 			std::cerr << "There was an error opening " + damageData + "." << std::endl;
 			exit(4);

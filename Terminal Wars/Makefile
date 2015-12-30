@@ -3,7 +3,7 @@ DEBUG = -g
 CXXFLAGS = -Wall -std=c++11 $(DEBUG)
 LFLAGS = -Wall -std=c++11 $(DEBUG)
 BINS = TerminalWars Test
-OBJS = Data.o Map.o MapTile.o UI.o Unit.o UnitData.o Weapon.o
+OBJS = Data.o Game.o Map.o MapTile.o UI.o Unit.o UnitData.o Weapon.o
 LIBS = 
 
 all : $(BINS)
@@ -18,6 +18,7 @@ Test.o :
 	$(CXX) $(CXXFLAGS) -c -o Test.o ../TestTW/Test.cpp
 
 Data.o : Data.cpp
+Game.o : Game.cpp
 Map.o : Map.cpp
 MapTile.o : MapTile.cpp
 UI.o : UI.cpp
