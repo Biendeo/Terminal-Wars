@@ -3,6 +3,8 @@
 
 *.o
 *.exe
+*.opendb
+~AutoRecover*
 
 # User-specific files
 *.suo
