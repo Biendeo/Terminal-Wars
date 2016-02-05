@@ -12,6 +12,7 @@ namespace TerminalWars {
 	typedef char Range;
 	typedef char Ammo;
 	typedef int DamageKey;
+	typedef short Health;
 
 	enum class Team : char {
 		NONE,

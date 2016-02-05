@@ -69,6 +69,7 @@ namespace TerminalWars {
 			}
 			switch (keyPress) {
 				case upKey:
+				case rightKey:
 					if (currentSelect > 0) {
 						--currentSelect;
 					}
@@ -79,6 +80,7 @@ namespace TerminalWars {
 					}
 					break;
 				case downKey:
+				case leftKey:
 					if (currentSelect < size - 1) {
 						++currentSelect;
 					}
@@ -218,6 +220,27 @@ namespace TerminalWars {
 			}
 			++y;
 		}
+		rlutil::resetColor();
+	}
+
+	void DrawMapUnits(Map *m, std::vector<Unit> units, int width, int height, int xScreen, int yScreen, int xMap, int yMap) {
+		if (width == -1) {
+			width = rlutil::tcols();
+		}
+		if (height == -1) {
+			height = rlutil::trows();
+		}
+		rlutil::saveDefaultColor();
+
+		for (int i = 0; i < (int)units.size(); i++) {
+			if (units.at(i).GetX() >= xMap && units.at(i).GetX() < xMap + width && units.at(i).GetY() >= yMap && units.at(i).GetY() < yMap + height && units.at(i).GetCarried() == false) {
+				rlutil::locate(units.at(i).GetX() - xMap + xScreen + 1, units.at(i).GetY() - yMap + yScreen + 1);
+				rlutil::setColor(units.at(i).GetColor());
+				rlutil::setBackgroundColor(Data::GetMapTileData(m->GetTile(units.at(i).GetX(), units.at(i).GetY(), true), true).GetBackgroundColor());
+				std::cout << Data::GetUnitData(units.at(i).GetType(), true).GetDisplayChar();
+			}
+		}
+
 		rlutil::resetColor();
 	}
 }

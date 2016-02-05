@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include "../Terminal Wars/Game.h"
 #include "../Terminal Wars/rlutil.h"
 #include "../Terminal Wars/UI.h"
 #include "../Terminal Wars/Data.h"
@@ -144,9 +145,8 @@ void test3() {
 	cout << "Press any key to begin TEST 3" << endl;
 	rlutil::getkey();
 
-	Data d;
-	Map *testMap = new Map("../Maps/Spann-Island.twmap");
-	DrawMap(testMap);
+	Game *g = new Game("../Maps/Spann-Island.twmap");
+	g->Play();
 
 	rlutil::getkey();
 }

@@ -13,6 +13,8 @@ namespace TerminalWars {
 		int GetWidth();
 		int GetHeight();
 		void CaptureBuilding(int x, int y, Team team);
+		int GetNumOfBuildings(Team team = Team::NONE);
+		int GetNumPlayers();
 
 		private:
 		void LoadCustomMap(std::string customMap);

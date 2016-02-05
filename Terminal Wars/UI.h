@@ -4,6 +4,7 @@
 #include "rlutil.h"
 #include "Constants.h"
 #include "Map.h"
+#include "Unit.h"
 
 namespace TerminalWars {
 
@@ -11,13 +12,17 @@ namespace TerminalWars {
 #ifdef WIN32
 	const char upKey = rlutil::KEY_UP;
 	const char downKey = rlutil::KEY_DOWN;
+	const char leftKey = rlutil::KEY_LEFT;
+	const char rightKey = rlutil::KEY_RIGHT;
 	const char confirmKey = rlutil::KEY_ENTER;
 	const char cancelKey = rlutil::KEY_ESCAPE;
 	const char disabledChar = '\n';
 #else
 	const char upKey = 'w';
 	const char downKey = 's';
-	const char confirmKey = rlutil::KEY_ENTER;
+	const char leftKey = 'a';
+	const char rightKey = 'd';
+	const char confirmKey = rlutil::KEY_SPACE;
 	const char cancelKey = 'p';
 	const char disabledChar = '\n';
 #endif
@@ -49,5 +54,13 @@ namespace TerminalWars {
 	/// map file.
 	std::string SelectMap();
 
+	/// Function: DrawMap
+	/// This function draws the map at a specific position on the screen.
+	/// It has optional parameters for the position of the map as well.
 	void DrawMap(Map *m, int width = -1, int height = -1, int xScreen = 0, int yScreen = 0, int xMap = 0, int yMap = 0);
+
+	/// Function: DrawMapUnits
+	/// This function draws the map units only on the screen.
+	/// It has optional parameters for the position of the map as well.
+	void DrawMapUnits(Map *m, std::vector<Unit> units, int width = -1, int height = -1, int xScreen = 0, int yScreen = 0, int xMap = 0, int yMap = 0);
 }

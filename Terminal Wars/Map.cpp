@@ -215,6 +215,115 @@ namespace TerminalWars {
 			return;
 		}
 	}
+
+	int Map::GetNumPlayers() {
+		int totalPlayers = 0;
+		bool red, blue, green, yellow = false;
+		for (int j = 0; j < height; j++) {
+			for (int i = 0; i < width; i++) {
+				switch (map.at(i).at(j)) {
+					case MapTileType::RED_HQ:
+						if (!red) {
+							red = true;
+							++totalPlayers;
+						}
+						break;
+					case MapTileType::BLUE_HQ:
+						if (!blue) {
+							blue = true;
+							++totalPlayers;
+						}
+						break;
+					case MapTileType::GREEN_HQ:
+						if (!green) {
+							green = true;
+							++totalPlayers;
+						}
+						break;
+					case MapTileType::YELLOW_HQ:
+						if (!yellow) {
+							yellow = true;
+							++totalPlayers;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		return totalPlayers;
+	}
+
+	int Map::GetNumOfBuildings(Team team) {
+		int totalBuildings, redBuildings, blueBuildings, greenBuildings, yellowBuildings = 0;
+		for (int j = 0; j < height; j++) {
+			for (int i = 0; i < width; i++) {
+				switch (map.at(i).at(j)) {
+					case MapTileType::NONE_CITY:
+					case MapTileType::NONE_HQ:
+					case MapTileType::NONE_BASE:
+					case MapTileType::NONE_PORT:
+					case MapTileType::NONE_AIRPORT:
+					case MapTileType::NONE_TOWER:
+						++totalBuildings;
+						break;
+					case MapTileType::RED_CITY:
+					case MapTileType::RED_HQ:
+					case MapTileType::RED_BASE:
+					case MapTileType::RED_PORT:
+					case MapTileType::RED_AIRPORT:
+					case MapTileType::RED_TOWER:
+						++redBuildings;
+						++totalBuildings;
+						break;
+					case MapTileType::BLUE_CITY:
+					case MapTileType::BLUE_HQ:
+					case MapTileType::BLUE_BASE:
+					case MapTileType::BLUE_PORT:
+					case MapTileType::BLUE_AIRPORT:
+					case MapTileType::BLUE_TOWER:
+						++blueBuildings;
+						++totalBuildings;
+						break;
+					case MapTileType::GREEN_CITY:
+					case MapTileType::GREEN_HQ:
+					case MapTileType::GREEN_BASE:
+					case MapTileType::GREEN_PORT:
+					case MapTileType::GREEN_AIRPORT:
+					case MapTileType::GREEN_TOWER:
+						++greenBuildings;
+						++totalBuildings;
+						break;
+					case MapTileType::YELLOW_CITY:
+					case MapTileType::YELLOW_HQ:
+					case MapTileType::YELLOW_BASE:
+					case MapTileType::YELLOW_PORT:
+					case MapTileType::YELLOW_AIRPORT:
+					case MapTileType::YELLOW_TOWER:
+						++yellowBuildings;
+						++totalBuildings;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		switch (team) {
+			case Team::NONE:
+			default:
+				return totalBuildings;
+			case Team::RED:
+				return redBuildings;
+			case Team::BLUE:
+				return blueBuildings;
+			case Team::GREEN:
+				return greenBuildings;
+			case Team::YELLOW:
+				return yellowBuildings;
+		}
+	}
 	
 	void Map::LoadCustomMap(std::string customMap) {
 		/**
