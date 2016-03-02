@@ -12,8 +12,13 @@
 
 namespace TerminalWars {
 	class Player {
+		public:
 		Team team;
 		Money money;
+		Player() {
+			team = Team::NONE;
+			money = 0;
+		}
 	};
 
 	class Game {
@@ -24,6 +29,7 @@ namespace TerminalWars {
 		void Play();
 		void DrawMainMap();
 		void CenterCursor();
+		int BuyLandUnit();
 
 		/// Function: PanMap
 		/// This function takes in a key press, and if it's a valid key, moves the
@@ -43,5 +49,6 @@ namespace TerminalWars {
 		int mapX;
 		int mapY;
 		bool showUnits;
+		Money GetCurrentPlayerMoney();
 	};
 }

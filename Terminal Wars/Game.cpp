@@ -15,6 +15,15 @@ namespace TerminalWars {
 		cursorY = 0;
 		CenterCursor();
 		showUnits = true;
+		// TODO: When the end turn function is made, decrement these.
+		whoseTurn = Team::RED;
+		turn = 1;
+		players.push_back(Player());
+		players.at(0).team = Team::RED;
+		players.at(0).money = 50000;
+		players.push_back(Player());
+		players.at(1).team = Team::BLUE;
+		players.at(1).money = 50000;
 	}
 
 	Game::Game(std::string mapPath) {
@@ -55,10 +64,18 @@ namespace TerminalWars {
 				case confirmKey:
 					// Long part on menu functions.
 					std::vector<std::string> options;
+					
 					options.push_back("EXIT GAME");
-					options.push_back(DisableStringForMenu("Option 2"));
-					options.push_back(DisableStringForMenu("Option 3"));
-					options.push_back(DisableStringForMenu("Option 4"));
+					
+					if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true) == MapTileType::RED_BASE) {
+						options.push_back("BUY LAND UNIT");
+					} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true) == MapTileType::BLUE_BASE) {
+						options.push_back("BUY LAND UNIT");
+					}
+					
+					options.push_back(DisableStringForMenu("END TURN (TODO)"));
+					options.push_back(DisableStringForMenu("SAVE (TODO)"));
+					options.push_back(DisableStringForMenu("LOAD (TODO)"));
 					options.push_back(DisableStringForMenu("Option 5"));
 					options.push_back(DisableStringForMenu("Option 6"));
 					options.push_back(DisableStringForMenu("Option 7"));
@@ -75,6 +92,8 @@ namespace TerminalWars {
 					
 					if (chosenOption == "EXIT GAME") {
 						exitingGame = true;
+					} else if (chosenOption == "BUY LAND UNIT") {
+						BuyLandUnit();
 					}
 					
 					break;
@@ -186,5 +205,59 @@ namespace TerminalWars {
 			default:
 				return 0;
 		}
+	}
+	
+	int Game::BuyLandUnit() {
+		// TODO: Make a generic unit creation part.
+		std::vector<std::string> landUnitsList;
+		std::vector<UnitType> landUnits;
+		for (int i = 0; i < Data::GetUnitDataSize(); i++) {
+			UnitData unit = Data::GetUnitData(static_cast<UnitType>(i));
+			std::string repString = "";
+			
+				// TODO: Decide how pipe and slime are handled.
+			switch (unit.GetMovementType()) {
+				case MovementType::INFANTRY:
+				case MovementType::MECH:
+				case MovementType::TIRES:
+				case MovementType::TREAD:
+					landUnits.push_back(unit.GetType());
+					repString += unit.GetName();
+					for (int i = unit.GetName().length(); i < 15; i++) {
+						repString += " ";
+					}
+					repString += " - $";
+					repString += std::to_string((int)unit.GetCost());
+					if (GetCurrentPlayerMoney() < unit.GetCost()) {
+						repString = DisableStringForMenu(repString);
+					}
+					landUnitsList.push_back(repString);
+					break;
+				default:
+					break;
+			}
+		}
+		int choice = CreateMenu(0, rlutil::trows() - UIInfoHeight, rlutil::tcols() - 1, UIInfoHeight, landUnitsList);
+		if (choice == -1) {
+			// TODO: Handle this.
+			return 2;
+		} else {
+			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, cursorX, cursorY));
+			for (int i = 0; i < (int)players.size(); i++) {
+				if (players.at(i).team == whoseTurn) {
+					players.at(i).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
+				}
+			}
+		}
+		return 0;
+	}
+	
+	Money Game::GetCurrentPlayerMoney() {
+		for (int i = 0; i < (int)players.size(); i++) {
+			if (players.at(i).team == whoseTurn) {
+				return players.at(i).money;
+			}
+		}
+		return (Money)0;
 	}
 }
