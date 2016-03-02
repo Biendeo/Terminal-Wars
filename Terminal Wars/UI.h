@@ -4,6 +4,7 @@
 #include "rlutil.h"
 #include "Constants.h"
 #include "Map.h"
+#include "MapTile.h"
 #include "Unit.h"
 
 namespace TerminalWars {
@@ -16,7 +17,6 @@ namespace TerminalWars {
 	const char rightKey = rlutil::KEY_RIGHT;
 	const char confirmKey = rlutil::KEY_ENTER;
 	const char cancelKey = rlutil::KEY_ESCAPE;
-	const char disabledChar = '\n';
 #else
 	const char upKey = 'w';
 	const char downKey = 's';
@@ -24,8 +24,9 @@ namespace TerminalWars {
 	const char rightKey = 'd';
 	const char confirmKey = rlutil::KEY_SPACE;
 	const char cancelKey = 'p';
-	const char disabledChar = '\n';
 #endif
+
+	const char disabledChar = '\n';
 
 	/// Function: CreateMenu
 	/// This function will display a menu at a given position on the screen.
@@ -63,4 +64,10 @@ namespace TerminalWars {
 	/// This function draws the map units only on the screen.
 	/// It has optional parameters for the position of the map as well.
 	void DrawMapUnits(Map *m, std::vector<Unit> units, int width = -1, int height = -1, int xScreen = 0, int yScreen = 0, int xMap = 0, int yMap = 0);
+	
+	/// Function: DrawFieldInfo
+	/// This function draws the field description underneath the map for the
+	/// user. It has optional parameters for the position of the field, but it
+	/// is ideal to set this so that it fits on the user's screen.
+	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = 6, int xPos = 0, int yPos = 19);
 }

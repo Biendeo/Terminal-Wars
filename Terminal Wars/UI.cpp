@@ -243,4 +243,37 @@ namespace TerminalWars {
 
 		rlutil::resetColor();
 	}
+	
+	void DrawFieldInfo(MapTile mapTile, int width, int height, int xPos, int yPos) {
+		if (width == -1) {
+			width = rlutil::tcols();
+		}
+		if (height == -1) {
+			height = rlutil::trows();
+		}
+		rlutil::locate(xPos + 1, yPos + 1);
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width - 1; j++) {
+				std::cout << " ";
+			}
+			
+			if (i != height - 1) {
+				std::cout << std::endl;
+			}
+		}
+		
+		rlutil::locate(xPos + 1, yPos + 1);
+		
+		std::cout << mapTile.GetName() << std::endl;
+		std::cout << "Defense: ";
+		rlutil::saveDefaultColor();
+		rlutil::setColor(rlutil::YELLOW);
+		for (int i = 0; i < (int)mapTile.GetDefense(); i++) {
+			std::cout << "*";
+		}
+		rlutil::resetColor();
+		
+		// TODO: Add more info.
+		
+	}
 }

@@ -33,10 +33,24 @@ namespace TerminalWars {
 	void Game::Play() {
 		rlutil::cls();
 		char keyPress = -1;
-		while (keyPress != cancelKey) {
+		while (keyPress != -5) {
 			DrawMainMap();
 			keyPress = rlutil::getkey();
-			PanMap(keyPress);
+			switch (keyPress) {
+				case upKey:
+				case downKey:
+				case rightKey:
+				case leftKey:
+					PanMap(keyPress);	
+					break;
+				case cancelKey:
+					if (showUnits) {
+						showUnits = false;
+					} else {
+						showUnits = true;
+					}
+					break;
+			}
 		}
 	}
 
@@ -60,6 +74,13 @@ namespace TerminalWars {
 		rlutil::setBackgroundColor(rlutil::LIGHTMAGENTA);
 		std::cout << currentTile.GetDisplayChar();
 		rlutil::resetColor();
+		
+		/*
+		if (showUnits && if on top of a unit) {
+			drawUnitInfo();
+		} else {*/
+		DrawFieldInfo(Data::GetMapTileData(m->GetTile(cursorX, cursorY, true), true));
+		//}
 	}
 
 	void Game::CenterCursor() {
