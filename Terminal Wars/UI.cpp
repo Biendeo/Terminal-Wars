@@ -7,6 +7,9 @@
 #include "MapTile.h"
 
 namespace TerminalWars {
+	int UIInfoHeight = 6;
+	float cursorDeadzone = 0.2f;
+	
 	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> menuItems, int padding, bool cancelable, int defaultSelect, Color unselectBack, Color unselectFore, Color selectBack, Color selectFore, Color disabledBack, Color disabledFore, Color disabledSelectBack, Color disabledSelectFore) {
 		const int size = (int)menuItems.size();
 		int currentSelect = defaultSelect;
@@ -249,7 +252,7 @@ namespace TerminalWars {
 			width = rlutil::tcols();
 		}
 		if (height == -1) {
-			height = rlutil::trows();
+			height = UIInfoHeight;
 		}
 		rlutil::locate(xPos + 1, yPos + 1);
 		for (int i = 0; i < height; i++) {

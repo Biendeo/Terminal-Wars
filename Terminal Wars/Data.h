@@ -14,7 +14,6 @@ namespace TerminalWars {
 		public:
 		Data();
 		~Data();
-		// TODO: Decide whether to static this again.
 		static MapTile GetMapTileData(MapTileType type, bool silent = false);
 		static int GetMapTileDataSize();
 		static UnitData GetUnitData(UnitType type, bool silent = false);

@@ -1,4 +1,5 @@
 #include <string>
+#include <exception>
 #include "Data.h"
 #include "Game.h"
 #include "rlutil.h"
@@ -33,7 +34,8 @@ namespace TerminalWars {
 	void Game::Play() {
 		rlutil::cls();
 		char keyPress = -1;
-		while (keyPress != -5) {
+		bool exitingGame = false;
+		while (!exitingGame) {
 			DrawMainMap();
 			keyPress = rlutil::getkey();
 			switch (keyPress) {
@@ -50,15 +52,40 @@ namespace TerminalWars {
 						showUnits = true;
 					}
 					break;
+				case confirmKey:
+					// Long part on menu functions.
+					std::vector<std::string> options;
+					options.push_back("EXIT GAME");
+					options.push_back(DisableStringForMenu("Option 2"));
+					options.push_back(DisableStringForMenu("Option 3"));
+					options.push_back(DisableStringForMenu("Option 4"));
+					options.push_back(DisableStringForMenu("Option 5"));
+					options.push_back(DisableStringForMenu("Option 6"));
+					options.push_back(DisableStringForMenu("Option 7"));
+					options.push_back(DisableStringForMenu("Option 8"));
+					
+					std::string chosenOption = "";
+					
+					// TODO: Determine whether this is a healthy thing to do.
+					try {
+						chosenOption = options.at(CreateMenu(0, rlutil::trows() - UIInfoHeight, rlutil::tcols() - 1, UIInfoHeight, options));
+					} catch (std::exception &e) {
+						
+					}
+					
+					if (chosenOption == "EXIT GAME") {
+						exitingGame = true;
+					}
+					
+					break;
 			}
 		}
 	}
 
 	void Game::DrawMainMap() {
 		// TODO: Make this more efficient, such as when the map doesn't pan.
-		int uiHeight = 6;
 		int screenWidth = rlutil::tcols();
-		int screenHeight = rlutil::trows() - uiHeight;
+		int screenHeight = rlutil::trows() - UIInfoHeight;
 
 		DrawMap(m, screenWidth, screenHeight, 0, 0, mapX, mapY);
 		if (showUnits) {
@@ -84,10 +111,8 @@ namespace TerminalWars {
 	}
 
 	void Game::CenterCursor() {
-		// TODO: Decide this.
-		int uiHeight = 6;
 		int screenWidth = rlutil::tcols();
-		int screenHeight = rlutil::trows() - uiHeight;
+		int screenHeight = rlutil::trows() - UIInfoHeight;
 
 		if (cursorX < (screenWidth / 2)) {
 			mapX = 0;
@@ -114,10 +139,8 @@ namespace TerminalWars {
 	}
 
 	int Game::PanMap(char key) {
-		float cursorDeadzone = 0.2f;
-		int uiHeight = 6;
 		int screenWidth = rlutil::tcols();
-		int screenHeight = rlutil::trows() - uiHeight;
+		int screenHeight = rlutil::trows() - UIInfoHeight;
 
 		switch (key) {
 			case upKey:

@@ -27,6 +27,10 @@ namespace TerminalWars {
 #endif
 
 	const char disabledChar = '\n';
+	
+	// TODO: Decide if this is good practice.
+	extern int UIInfoHeight; // 6
+	extern float cursorDeadzone; // 0.2f
 
 	/// Function: CreateMenu
 	/// This function will display a menu at a given position on the screen.
@@ -69,5 +73,5 @@ namespace TerminalWars {
 	/// This function draws the field description underneath the map for the
 	/// user. It has optional parameters for the position of the field, but it
 	/// is ideal to set this so that it fits on the user's screen.
-	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = 6, int xPos = 0, int yPos = 19);
+	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 0, int yPos = 19);
 }
