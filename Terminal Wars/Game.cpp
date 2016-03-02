@@ -18,12 +18,12 @@ namespace TerminalWars {
 		// TODO: When the end turn function is made, decrement these.
 		whoseTurn = Team::RED;
 		turn = 1;
-		players.push_back(Player());
-		players.at(0).team = Team::RED;
-		players.at(0).money = 50000;
-		players.push_back(Player());
-		players.at(1).team = Team::BLUE;
-		players.at(1).money = 50000;
+		players.emplace(Team::RED, Player());
+		players.at(Team::RED).team = Team::RED;
+		players.at(Team::RED).money = 50000;
+		players.emplace(Team::BLUE, Player());
+		players.at(Team::BLUE).team = Team::BLUE;
+		players.at(Team::BLUE).money = 50000;
 	}
 
 	Game::Game(std::string mapPath) {
@@ -243,21 +243,12 @@ namespace TerminalWars {
 			return 2;
 		} else {
 			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, cursorX, cursorY));
-			for (int i = 0; i < (int)players.size(); i++) {
-				if (players.at(i).team == whoseTurn) {
-					players.at(i).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
-				}
-			}
+			players.at(whoseTurn).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
 		}
 		return 0;
 	}
 	
 	Money Game::GetCurrentPlayerMoney() {
-		for (int i = 0; i < (int)players.size(); i++) {
-			if (players.at(i).team == whoseTurn) {
-				return players.at(i).money;
-			}
-		}
-		return (Money)0;
+		return players.at(whoseTurn).money;
 	}
 }

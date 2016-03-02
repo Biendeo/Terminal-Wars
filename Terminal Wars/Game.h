@@ -42,7 +42,7 @@ namespace TerminalWars {
 		private:
 		int turn;
 		Team whoseTurn;
-		std::vector<Player> players;
+		std::map<Team, Player> players;
 		std::vector<Unit> units;
 		int cursorX;
 		int cursorY;

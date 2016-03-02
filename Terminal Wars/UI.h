@@ -73,5 +73,5 @@ namespace TerminalWars {
 	/// This function draws the field description underneath the map for the
 	/// user. It has optional parameters for the position of the field, but it
 	/// is ideal to set this so that it fits on the user's screen.
-	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 0, int yPos = 19);
+	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 0, int yPos = rlutil::trows() - UIInfoHeight);
 }
