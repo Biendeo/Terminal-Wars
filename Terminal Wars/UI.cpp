@@ -280,7 +280,9 @@ namespace TerminalWars {
 		if (height == -1) {
 			height = UIInfoHeight;
 		}
-		CleanRegion(width, height, xPos, yPos);
+		
+		// TODO: Figure out why this is required to match with the field info function.
+		CleanRegion(width + 1, height, xPos, yPos);
 		
 		rlutil::saveDefaultColor();
 		
