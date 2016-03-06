@@ -8,6 +8,8 @@
 #include "Unit.h"
 
 namespace TerminalWars {
+	
+	class Game;
 
 	/// These can be freely changed depending on the program user's needs.
 #ifdef WIN32
@@ -71,7 +73,18 @@ namespace TerminalWars {
 	
 	/// Function: DrawFieldInfo
 	/// This function draws the field description underneath the map for the
-	/// user. It has optional parameters for the position of the field, but it
-	/// is ideal to set this so that it fits on the user's screen.
-	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 0, int yPos = rlutil::trows() - UIInfoHeight);
+	/// user. It has optional parameters for the position of the element, but
+	/// it is ideal to set this so that it fits on the user's screen.
+	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 20, int yPos = rlutil::trows() - UIInfoHeight);
+	
+	/// Function: DrawTurnInfo
+	/// This function draws the turn details underneath the map for the user.
+	/// It has optional parameters for the position of the element, but it is
+	/// ideal to set this so that it fits on the user's screen
+	void DrawTurnInfo(Game &g, int width = -1, int height = -1, int xPos = 0, int yPos = rlutil::trows() - UIInfoHeight);
+	
+	/// Function: CleanRegion
+	/// This function prints spaces in a given rectangle, effectively cleaning
+	/// it on the screen. Remember to move the cursor after using it.
+	void CleanRegion(int width, int height, int xPos, int yPos);
 }

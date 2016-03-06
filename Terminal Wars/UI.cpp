@@ -4,6 +4,7 @@
 #include "rlutil.h"
 #include "Constants.h"
 #include "Data.h"
+#include "Game.h"
 #include "MapTile.h"
 
 namespace TerminalWars {
@@ -249,25 +250,17 @@ namespace TerminalWars {
 	
 	void DrawFieldInfo(MapTile mapTile, int width, int height, int xPos, int yPos) {
 		if (width == -1) {
-			width = rlutil::tcols();
+			width = rlutil::tcols() - 20;
 		}
 		if (height == -1) {
 			height = UIInfoHeight;
 		}
-		rlutil::locate(xPos + 1, yPos + 1);
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width - 1; j++) {
-				std::cout << " ";
-			}
-			
-			if (i != height - 1) {
-				std::cout << std::endl;
-			}
-		}
+		CleanRegion(width, height, xPos, yPos);
 		
 		rlutil::locate(xPos + 1, yPos + 1);
 		
-		std::cout << mapTile.GetName() << std::endl;
+		std::cout << mapTile.GetName();
+		rlutil::locate(xPos + 1, yPos + 2);
 		std::cout << "Defense: ";
 		rlutil::saveDefaultColor();
 		rlutil::setColor(rlutil::YELLOW);
@@ -277,6 +270,100 @@ namespace TerminalWars {
 		rlutil::resetColor();
 		
 		// TODO: Add more info.
+	}
+	
+	void DrawTurnInfo(Game &g, int width, int height, int xPos, int yPos) {
+		if (width == -1) {
+			// TODO: Move this number into a header const (or make it a float).
+			width = 20;
+		}
+		if (height == -1) {
+			height = UIInfoHeight;
+		}
+		CleanRegion(width, height, xPos, yPos);
 		
+		rlutil::saveDefaultColor();
+		
+		rlutil::locate(xPos + 1, yPos + 1);
+		
+		std::cout << "Turn " << g.GetTurn();
+		int players = 0;
+		
+		// TODO: Remove repeating parts.
+		if (g.DoesPlayerExist(Team::RED)) {
+			rlutil::locate(xPos + 1, yPos + 2 + players);
+			if (g.GetWhoseTurn() == Team::RED) {
+				std::cout << "-> ";
+			} else {
+				std::cout << "   ";
+			}
+			
+			rlutil::setColor(rlutil::LIGHTRED);
+			std::cout << "RED   ";
+			rlutil::resetColor();
+			std::cout << " - $" << g.GetPlayerMoney(Team::RED);
+			
+			++players;
+		}
+		if (g.DoesPlayerExist(Team::BLUE)) {
+			rlutil::locate(xPos + 1, yPos + 2 + players);
+			if (g.GetWhoseTurn() == Team::BLUE) {
+				std::cout << "-> ";
+			} else {
+				std::cout << "   ";
+			}
+			
+			rlutil::setColor(rlutil::LIGHTBLUE);
+			std::cout << "BLUE  ";
+			rlutil::resetColor();
+			std::cout << " - $" << g.GetPlayerMoney(Team::BLUE);
+			
+			++players;
+		}
+		if (g.DoesPlayerExist(Team::GREEN)) {
+			rlutil::locate(xPos + 1, yPos + 2 + players);
+			if (g.GetWhoseTurn() == Team::GREEN) {
+				std::cout << "-> ";
+			} else {
+				std::cout << "   ";
+			}
+			
+			rlutil::setColor(rlutil::LIGHTGREEN);
+			std::cout << "GREEN ";
+			rlutil::resetColor();
+			std::cout << " - $" << g.GetPlayerMoney(Team::GREEN);
+			
+			++players;
+		}
+		if (g.DoesPlayerExist(Team::YELLOW)) {
+			rlutil::locate(xPos + 1, yPos + 2 + players);
+			if (g.GetWhoseTurn() == Team::YELLOW) {
+				std::cout << "-> ";
+			} else {
+				std::cout << "   ";
+			}
+			
+			rlutil::setColor(rlutil::YELLOW);
+			std::cout << "YELLOW";
+			rlutil::resetColor();
+			std::cout << " - $" << g.GetPlayerMoney(Team::YELLOW);
+			
+			++players;
+		}
+		
+		
+	}
+	
+	void CleanRegion(int width, int height, int xPos, int yPos) {
+		rlutil::locate(xPos + 1, yPos + 1);		
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width - 1; j++) {
+				std::cout << " ";
+			}
+			
+			if (i != height - 1) {
+				rlutil::locate(xPos + 1, yPos + 2 + i);
+			}
+		}
 	}
 }

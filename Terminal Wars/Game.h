@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <string>
 #include <vector>
 #include "Constants.h"
@@ -30,6 +31,11 @@ namespace TerminalWars {
 		void DrawMainMap();
 		void CenterCursor();
 		int BuyLandUnit();
+		void EndTurn();
+		bool DoesPlayerExist(Team team);
+		Money GetPlayerMoney(Team team);
+		Team GetWhoseTurn();
+		int GetTurn();
 
 		/// Function: PanMap
 		/// This function takes in a key press, and if it's a valid key, moves the

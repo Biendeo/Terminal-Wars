@@ -44,6 +44,7 @@ namespace TerminalWars {
 		rlutil::cls();
 		char keyPress = -1;
 		bool exitingGame = false;
+		DrawTurnInfo(*this);
 		while (!exitingGame) {
 			DrawMainMap();
 			keyPress = rlutil::getkey();
@@ -73,7 +74,7 @@ namespace TerminalWars {
 						options.push_back("BUY LAND UNIT");
 					}
 					
-					options.push_back(DisableStringForMenu("END TURN (TODO)"));
+					options.push_back("END TURN (NOT DONE)");
 					options.push_back(DisableStringForMenu("SAVE (TODO)"));
 					options.push_back(DisableStringForMenu("LOAD (TODO)"));
 					options.push_back(DisableStringForMenu("Option 5"));
@@ -94,7 +95,11 @@ namespace TerminalWars {
 						exitingGame = true;
 					} else if (chosenOption == "BUY LAND UNIT") {
 						BuyLandUnit();
+					} else if (chosenOption == "END TURN (NOT DONE)") {
+						EndTurn();
 					}
+					
+					DrawTurnInfo(*this);
 					
 					break;
 			}
@@ -120,7 +125,7 @@ namespace TerminalWars {
 		rlutil::setBackgroundColor(rlutil::LIGHTMAGENTA);
 		std::cout << currentTile.GetDisplayChar();
 		rlutil::resetColor();
-		
+				
 		/*
 		if (showUnits && if on top of a unit) {
 			drawUnitInfo();
@@ -250,5 +255,67 @@ namespace TerminalWars {
 	
 	Money Game::GetCurrentPlayerMoney() {
 		return players.at(whoseTurn).money;
+	}
+	
+	void Game::EndTurn() {
+		bool allPlayersDone = false;
+		if (whoseTurn == Team::GREEN) {
+			allPlayersDone = true;
+		} else if (whoseTurn == Team::YELLOW) {
+			if (players.count(Team::GREEN) == 1) {
+				whoseTurn = Team::GREEN;
+			} else {
+				allPlayersDone = true;
+			}
+		} else if (whoseTurn == Team::BLUE) {
+			if (players.count(Team::YELLOW) == 1) {
+				whoseTurn = Team::YELLOW;
+			} else {
+				allPlayersDone = true;
+			}
+		} else if (whoseTurn == Team::RED) {
+			if (players.count(Team::BLUE) == 1) {
+				whoseTurn = Team::BLUE;
+			} else {
+				allPlayersDone = true;
+			}
+		}
+
+		if (allPlayersDone) {
+			whoseTurn = Team::RED;
+			++turn;
+		}
+		
+		for (Unit &u : units) {
+			if (u.GetTeam() == whoseTurn) {
+				// TODO: Get calculation for unit maintenance.
+				// TODO: Get calculation for unit repair.
+				// TODO: Get calculation for buildings owned (put this in a different loop).
+			}
+		}
+	}
+	
+	bool Game::DoesPlayerExist(Team team) {
+		if (players.count(team) == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	Money Game::GetPlayerMoney(Team team) {
+		if (players.count(team) == 0) {
+			return 0;
+		} else {
+			return players.at(team).money;
+		}
+	}
+	
+	Team Game::GetWhoseTurn() {
+		return whoseTurn;
+	}
+	
+	int Game::GetTurn() {
+		return turn;
 	}
 }

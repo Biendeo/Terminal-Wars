@@ -27,4 +27,4 @@ UnitData.o : UnitData.cpp
 Weapon.o : Weapon.cpp
 
 clean :
-	rm -f $(BINS) *.o
+	rm -f $(BINS) *.o *.exe
