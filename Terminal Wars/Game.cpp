@@ -247,7 +247,7 @@ namespace TerminalWars {
 			// TODO: Handle this.
 			return 2;
 		} else {
-			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, cursorX, cursorY));
+			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, &Data::GetUnitData(landUnits.at(choice)), cursorX, cursorY));
 			players.at(whoseTurn).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
 		}
 		return 0;

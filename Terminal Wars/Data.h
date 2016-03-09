@@ -14,11 +14,11 @@ namespace TerminalWars {
 		public:
 		Data();
 		~Data();
-		static MapTile GetMapTileData(MapTileType type, bool silent = false);
+		static MapTile &GetMapTileData(MapTileType type, bool silent = false);
 		static int GetMapTileDataSize();
-		static UnitData GetUnitData(UnitType type, bool silent = false);
+		static UnitData &GetUnitData(UnitType type, bool silent = false);
 		static int GetUnitDataSize();
-		static Weapon GetWeaponData(WeaponType type, bool silent = false);
+		static Weapon &GetWeaponData(WeaponType type, bool silent = false);
 		static int GetWeaponDataSize();
 		static BaseDamage GetBaseDamage(UnitType attacker, UnitType defender, bool primary, bool silent = false);
 

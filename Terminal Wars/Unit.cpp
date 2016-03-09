@@ -1,24 +1,23 @@
 #include "Unit.h"
+#include "UnitData.h"
 #include "rlutil.h"
 
 namespace TerminalWars {
 
-	Unit::Unit(UnitType type, Team team) {
+	Unit::Unit(UnitType type, Team team, UnitData *data, int x, int y) {
 		givenName = "";
 		this->type = type;
 		this->team = team;
-		Move(0, 0);
+		this->data = data;
+		Move(x, y);
 		carried = false;
 		health = 100;
 	}
-
-	Unit::Unit(UnitType type, Team team, int x, int y) {
-		givenName = "";
-		this->type = type;
-		this->team = team;
-		Move(x, y);
-		carried = false;
+	
+	Unit::Unit(UnitType type, Team team, UnitData *data) : Unit::Unit(type, team, data, 0, 0) {
+		
 	}
+
 
 
 	Unit::~Unit() {

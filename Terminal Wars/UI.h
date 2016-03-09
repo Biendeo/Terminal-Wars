@@ -40,7 +40,7 @@ namespace TerminalWars {
 	/// returned. You can also optionally add a default starting point on the menu,
 	/// set whether the user can "cancel" the menu, and change the background and
 	/// foreground colours of each of the four states.
-	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> menuItems, int padding = 2, bool cancelable = true, int defaultSelect = 0, Color unselectBack = rlutil::BLACK, Color unselectFore = rlutil::GREY, Color selectBack = rlutil::BLACK, Color selectFore = rlutil::YELLOW, Color disabledBack = rlutil::BLACK, Color disabledFore = rlutil::DARKGREY, Color disabledSelectBack = rlutil::BLACK, Color disabledSelectFore = rlutil::BROWN);
+	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> &menuItems, int padding = 2, bool cancelable = true, int defaultSelect = 0, Color unselectBack = rlutil::BLACK, Color unselectFore = rlutil::GREY, Color selectBack = rlutil::BLACK, Color selectFore = rlutil::YELLOW, Color disabledBack = rlutil::BLACK, Color disabledFore = rlutil::DARKGREY, Color disabledSelectBack = rlutil::BLACK, Color disabledSelectFore = rlutil::BROWN);
 
 	/// Function: DisableStringForMenu
 	/// This function returns the string with the disabledChar added to it.

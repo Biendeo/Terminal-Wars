@@ -1,13 +1,15 @@
 #pragma once
 #include <string>
 #include "Constants.h"
+#include "UnitData.h"
 
 namespace TerminalWars {
 	class Unit {
 		public:
-		Unit(UnitType type, Team team);
-		Unit(UnitType type, Team team, int x, int y);
+		Unit(UnitType type, Team team, UnitData *data);
+		Unit(UnitType type, Team team, UnitData *data, int x, int y);
 		~Unit();
+		UnitData *data; // TODO: Can this be done with a reference?
 
 		UnitType GetType();
 		std::string GetGivenName();

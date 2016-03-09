@@ -75,7 +75,7 @@ namespace TerminalWars {
 		mapTiles.clear();
 	}
 
-	MapTile Data::GetMapTileData(MapTileType type, bool silent) {
+	MapTile &Data::GetMapTileData(MapTileType type, bool silent) {
 		try {
 			return mapTiles.at(type);
 		}
@@ -94,7 +94,7 @@ namespace TerminalWars {
 		return int(mapTiles.size());
 	}
 
-	UnitData Data::GetUnitData(UnitType type, bool silent) {
+	UnitData &Data::GetUnitData(UnitType type, bool silent) {
 		try {
 			return units.at(type);
 		}
@@ -113,7 +113,7 @@ namespace TerminalWars {
 		return int(units.size());
 	}
 
-	Weapon Data::GetWeaponData(WeaponType type, bool silent) {
+	Weapon &Data::GetWeaponData(WeaponType type, bool silent) {
 		try {
 			return weapons.at(type);
 		}

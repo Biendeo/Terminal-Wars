@@ -11,7 +11,7 @@ namespace TerminalWars {
 	int UIInfoHeight = 6;
 	float cursorDeadzone = 0.2f;
 	
-	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> menuItems, int padding, bool cancelable, int defaultSelect, Color unselectBack, Color unselectFore, Color selectBack, Color selectFore, Color disabledBack, Color disabledFore, Color disabledSelectBack, Color disabledSelectFore) {
+	int CreateMenu(int xPos, int yPos, int width, int height, std::vector<std::string> &menuItems, int padding, bool cancelable, int defaultSelect, Color unselectBack, Color unselectFore, Color selectBack, Color selectFore, Color disabledBack, Color disabledFore, Color disabledSelectBack, Color disabledSelectFore) {
 		const int size = (int)menuItems.size();
 		int currentSelect = defaultSelect;
 		int currentTop;
@@ -281,7 +281,7 @@ namespace TerminalWars {
 			height = UIInfoHeight;
 		}
 		
-		// TODO: Figure out why this is required to match with the field info function.
+		// TODO: Figure out why the +1 is required to match with the field info function.
 		CleanRegion(width + 1, height, xPos, yPos);
 		
 		rlutil::saveDefaultColor();
