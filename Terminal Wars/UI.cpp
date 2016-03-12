@@ -216,7 +216,7 @@ namespace TerminalWars {
 				if (i + xMap >= m->GetWidth() + xScreen) {
 					break;
 				}
-				MapTile currentTile = Data::GetMapTileData(m->GetTile(x, y, true), true);
+				MapTile currentTile = m->GetTile(x, y, true);
 				rlutil::setColor(currentTile.GetForegroundColor());
 				rlutil::setBackgroundColor(currentTile.GetBackgroundColor());
 				std::cout << currentTile.GetDisplayChar();
@@ -227,7 +227,7 @@ namespace TerminalWars {
 		rlutil::resetColor();
 	}
 
-	void DrawMapUnits(Map *m, std::vector<Unit> units, int width, int height, int xScreen, int yScreen, int xMap, int yMap) {
+	void DrawMapUnits(Map *m, std::vector<Unit> &units, int width, int height, int xScreen, int yScreen, int xMap, int yMap) {
 		if (width == -1) {
 			width = rlutil::tcols();
 		}
@@ -236,19 +236,19 @@ namespace TerminalWars {
 		}
 		rlutil::saveDefaultColor();
 
-		for (int i = 0; i < (int)units.size(); i++) {
-			if (units.at(i).GetX() >= xMap && units.at(i).GetX() < xMap + width && units.at(i).GetY() >= yMap && units.at(i).GetY() < yMap + height && units.at(i).GetCarried() == false) {
-				rlutil::locate(units.at(i).GetX() - xMap + xScreen + 1, units.at(i).GetY() - yMap + yScreen + 1);
-				rlutil::setColor(units.at(i).GetColor());
-				rlutil::setBackgroundColor(Data::GetMapTileData(m->GetTile(units.at(i).GetX(), units.at(i).GetY(), true), true).GetBackgroundColor());
-				std::cout << Data::GetUnitData(units.at(i).GetType(), true).GetDisplayChar();
+		for (Unit u : units) {
+			if (u.GetX() >= xMap && u.GetX() < xMap + width && u.GetY() >= yMap && u.GetY() < yMap + height && u.GetCarried() == false) {
+				rlutil::locate(u.GetX() - xMap + xScreen + 1, u.GetY() - yMap + yScreen + 1);
+				rlutil::setColor(u.GetColor());
+				rlutil::setBackgroundColor(m->GetTile(u.GetX(), u.GetY(), true).GetBackgroundColor());
+				std::cout << u.data.get().GetDisplayChar();
 			}
 		}
 
 		rlutil::resetColor();
 	}
 	
-	void DrawFieldInfo(MapTile mapTile, int width, int height, int xPos, int yPos) {
+	void DrawFieldInfo(MapTile &mapTile, int width, int height, int xPos, int yPos) {
 		if (width == -1) {
 			width = rlutil::tcols() - 20;
 		}

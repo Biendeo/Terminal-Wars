@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <string>
 #include "Constants.h"
 #include "UnitData.h"
@@ -6,10 +7,10 @@
 namespace TerminalWars {
 	class Unit {
 		public:
-		Unit(UnitType type, Team team, UnitData *data);
-		Unit(UnitType type, Team team, UnitData *data, int x, int y);
+		Unit(UnitType type, Team team, UnitData &datac);
+		Unit(UnitType type, Team team, UnitData &datac, int x, int y);
 		~Unit();
-		UnitData *data; // TODO: Can this be done with a reference?
+		std::reference_wrapper<UnitData> data;
 
 		UnitType GetType();
 		std::string GetGivenName();

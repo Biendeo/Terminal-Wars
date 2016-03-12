@@ -68,9 +68,9 @@ namespace TerminalWars {
 					
 					options.push_back("EXIT GAME");
 					
-					if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true) == MapTileType::RED_BASE) {
+					if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::RED_BASE) {
 						options.push_back("BUY LAND UNIT");
-					} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true) == MapTileType::BLUE_BASE) {
+					} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::BLUE_BASE) {
 						options.push_back("BUY LAND UNIT");
 					}
 					
@@ -120,7 +120,7 @@ namespace TerminalWars {
 		// TODO: Draw the cursor on units.
 		rlutil::locate(cursorX - mapX + 1, cursorY - mapY + 1);
 		rlutil::saveDefaultColor();
-		MapTile currentTile = Data::GetMapTileData(m->GetTile(cursorX, cursorY, true), true);
+		MapTile currentTile = m->GetTile(cursorX, cursorY, true);
 		rlutil::setColor(currentTile.GetForegroundColor());
 		rlutil::setBackgroundColor(rlutil::LIGHTMAGENTA);
 		std::cout << currentTile.GetDisplayChar();
@@ -130,7 +130,7 @@ namespace TerminalWars {
 		if (showUnits && if on top of a unit) {
 			drawUnitInfo();
 		} else {*/
-		DrawFieldInfo(Data::GetMapTileData(m->GetTile(cursorX, cursorY, true), true));
+		DrawFieldInfo(m->GetTile(cursorX, cursorY, true));
 		//}
 	}
 
@@ -247,7 +247,7 @@ namespace TerminalWars {
 			// TODO: Handle this.
 			return 2;
 		} else {
-			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, &Data::GetUnitData(landUnits.at(choice)), cursorX, cursorY));
+			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, Data::GetUnitData(landUnits.at(choice)), cursorX, cursorY));
 			players.at(whoseTurn).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
 		}
 		return 0;

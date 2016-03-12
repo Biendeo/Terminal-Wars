@@ -37,16 +37,16 @@ namespace TerminalWars {
 	}
 
 
-	MapTileType Map::GetTile(int x, int y, bool silent) {
+	MapTile &Map::GetTile(int x, int y, bool silent) {
 		try {
-			return map.at(y).at(x);
+			return map.at(y).at(x).get();
 		}
 		catch (const std::out_of_range& oor) {
 			if (!silent) {
-				std::cerr << "Map::CaptureBuilding() was given a bad range (" << x << ", " << y << ")." << std::endl;
+				std::cerr << "Map::GetTile() was given a bad range (" << x << ", " << y << ")." << std::endl;
 				std::cerr << oor.what() << std::endl;
 			}
-			return MapTileType::NONE;
+			return Data::GetMapTileData(MapTileType::NONE);
 		}
 	}
 
@@ -65,7 +65,7 @@ namespace TerminalWars {
 	void Map::CaptureBuilding(int x, int y, Team team) {
 		// TODO: Make this not as repetitive.
 		try {
-			switch (map.at(x).at(y)) {
+			switch (map.at(x).at(y).get().GetType()) {
 				case MapTileType::NONE_CITY:
 				case MapTileType::RED_CITY:
 				case MapTileType::BLUE_CITY:
@@ -73,19 +73,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_CITY:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_CITY;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_CITY);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_CITY;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_CITY);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_CITY;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_CITY);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_CITY;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_CITY);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_CITY;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_CITY);
 							break;
 					}
 					break;
@@ -96,19 +96,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_HQ:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_HQ;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_HQ);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_HQ;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_HQ);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_HQ;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_HQ);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_HQ;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_HQ);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_HQ;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_HQ);
 							break;
 					}
 					break;
@@ -119,19 +119,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_BASE:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_BASE;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_BASE);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_BASE;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_BASE);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_BASE;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_BASE);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_BASE;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_BASE);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_BASE;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_BASE);
 							break;
 					}
 					break;
@@ -142,19 +142,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_PORT:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_PORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_PORT);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_PORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_PORT);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_PORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_PORT);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_PORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_PORT);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_PORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_PORT);
 							break;
 					}
 					break;
@@ -165,19 +165,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_AIRPORT:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_AIRPORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_AIRPORT);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_AIRPORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_AIRPORT);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_AIRPORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_AIRPORT);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_AIRPORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_AIRPORT);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_AIRPORT;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_AIRPORT);
 							break;
 					}
 					break;
@@ -188,24 +188,24 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_TOWER:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y) = MapTileType::NONE_TOWER;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_TOWER);
 							break;
 						case Team::RED:
-							map.at(x).at(y) = MapTileType::RED_TOWER;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_TOWER);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y) = MapTileType::BLUE_TOWER;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_TOWER);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y) = MapTileType::GREEN_TOWER;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_TOWER);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y) = MapTileType::YELLOW_TOWER;
+							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_TOWER);
 							break;
 					}
 					break;
 				default:
-					std::cerr << "Map::CaptureBuilding() tried to convert an invalid " << Data::GetMapTileData(map.at(x).at(y)).GetName() << "." << std::endl;
+					std::cerr << "Map::CaptureBuilding() tried to convert an invalid " << map.at(x).at(y).get().GetName() << "." << std::endl;
 					break;
 			}
 		}
@@ -219,9 +219,9 @@ namespace TerminalWars {
 	int Map::GetNumPlayers() {
 		int totalPlayers = 0;
 		bool red, blue, green, yellow = false;
-		for (int j = 0; j < height; j++) {
-			for (int i = 0; i < width; i++) {
-				switch (map.at(i).at(j)) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				switch (map.at(x).at(y).get().GetType()) {
 					case MapTileType::RED_HQ:
 						if (!red) {
 							red = true;
@@ -257,9 +257,9 @@ namespace TerminalWars {
 
 	int Map::GetNumOfBuildings(Team team) {
 		int totalBuildings, redBuildings, blueBuildings, greenBuildings, yellowBuildings = 0;
-		for (int j = 0; j < height; j++) {
-			for (int i = 0; i < width; i++) {
-				switch (map.at(i).at(j)) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; y++) {
+				switch (map.at(x).at(y).get().GetType()) {
 					case MapTileType::NONE_CITY:
 					case MapTileType::NONE_HQ:
 					case MapTileType::NONE_BASE:
@@ -386,7 +386,7 @@ namespace TerminalWars {
 		}
 
 		// TODO: Clean up this process a little.
-		std::vector<MapTileType> temp;
+		std::vector<std::reference_wrapper<MapTile>> temp;
 
 		char c;
 		while (mapFile >> std::noskipws >> c) {
@@ -398,133 +398,133 @@ namespace TerminalWars {
 					break;
 				case ' ':
 				default:
-					temp.push_back(MapTileType::NONE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE)));
 					break;
 				case 'L':
-					temp.push_back(MapTileType::FOREST);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::FOREST)));
 					break;
 				case 'M':
-					temp.push_back(MapTileType::MISSILE_SILO);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::MISSILE_SILO)));
 					break;
 				case 'm':
-					temp.push_back(MapTileType::MISSILE_SILO_USED);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::MISSILE_SILO_USED)));
 					break;
 				case '<':
-					temp.push_back(MapTileType::MOUNTAIN);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::MOUNTAIN)));
 					break;
 				case 'N':
-					temp.push_back(MapTileType::PIPE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::PIPE)));
 					break;
 				case 'n':
-					temp.push_back(MapTileType::PIPE_SEAM);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::PIPE_SEAM)));
 					break;
 				case 'P':
-					temp.push_back(MapTileType::PLAIN);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::PLAIN)));
 					break;
 				case 'K':
-					temp.push_back(MapTileType::REEF);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::REEF)));
 					break;
 				case 'I':
-					temp.push_back(MapTileType::RIVER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RIVER)));
 					break;
 				case 'U':
-					temp.push_back(MapTileType::ROAD);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::ROAD)));
 					break;
 				case 'O':
-					temp.push_back(MapTileType::SEA);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::SEA)));
 					break;
 				case 'o':
-					temp.push_back(MapTileType::SHOAL);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::SHOAL)));
 					break;
 				case '1':
-					temp.push_back(MapTileType::NONE_CITY);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_CITY)));
 					break;
 				case 'Q':
-					temp.push_back(MapTileType::RED_CITY);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_CITY)));
 					break;
 				case 'A':
-					temp.push_back(MapTileType::BLUE_CITY);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_CITY)));
 					break;
 				case 'q':
-					temp.push_back(MapTileType::GREEN_CITY);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_CITY)));
 					break;
 				case 'a':
-					temp.push_back(MapTileType::YELLOW_CITY);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_CITY)));
 					break;
 				case '2':
-					temp.push_back(MapTileType::NONE_HQ);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_HQ)));
 					break;
 				case 'W':
-					temp.push_back(MapTileType::RED_HQ);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_HQ)));
 					break;
 				case 'S':
-					temp.push_back(MapTileType::BLUE_HQ);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_HQ)));
 					break;
 				case 'w':
-					temp.push_back(MapTileType::GREEN_HQ);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_HQ)));
 					break;
 				case 's':
-					temp.push_back(MapTileType::YELLOW_HQ);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_HQ)));
 					break;
 				case '3':
-					temp.push_back(MapTileType::NONE_BASE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_BASE)));
 					break;
 				case 'E':
-					temp.push_back(MapTileType::RED_BASE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_BASE)));
 					break;
 				case 'D':
-					temp.push_back(MapTileType::BLUE_BASE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_BASE)));
 					break;
 				case 'e':
-					temp.push_back(MapTileType::GREEN_BASE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_BASE)));
 					break;
 				case 'd':
-					temp.push_back(MapTileType::YELLOW_BASE);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_BASE)));
 					break;
 				case '4':
-					temp.push_back(MapTileType::NONE_PORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_PORT)));
 					break;
 				case 'R':
-					temp.push_back(MapTileType::RED_PORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_PORT)));
 					break;
 				case 'F':
-					temp.push_back(MapTileType::BLUE_PORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_PORT)));
 					break;
 				case 'r':
-					temp.push_back(MapTileType::GREEN_PORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_PORT)));
 					break;
 				case 'f':
-					temp.push_back(MapTileType::YELLOW_PORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_PORT)));
 					break;
 				case '5':
-					temp.push_back(MapTileType::NONE_AIRPORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_AIRPORT)));
 					break;
 				case 'T':
-					temp.push_back(MapTileType::RED_AIRPORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_AIRPORT)));
 					break;
 				case 'G':
-					temp.push_back(MapTileType::BLUE_AIRPORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_AIRPORT)));
 					break;
 				case 't':
-					temp.push_back(MapTileType::GREEN_AIRPORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_AIRPORT)));
 					break;
 				case 'g':
-					temp.push_back(MapTileType::YELLOW_AIRPORT);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_AIRPORT)));
 					break;
 				case '6':
-					temp.push_back(MapTileType::NONE_TOWER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::NONE_TOWER)));
 					break;
 				case 'Y':
-					temp.push_back(MapTileType::RED_TOWER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::RED_TOWER)));
 					break;
 				case 'H':
-					temp.push_back(MapTileType::BLUE_TOWER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::BLUE_TOWER)));
 					break;
 				case 'y':
-					temp.push_back(MapTileType::GREEN_TOWER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::GREEN_TOWER)));
 					break;
 				case 'h':
-					temp.push_back(MapTileType::YELLOW_TOWER);
+					temp.emplace_back(std::reference_wrapper<MapTile>(Data::GetMapTileData(MapTileType::YELLOW_TOWER)));
 					break;
 			}
 		}

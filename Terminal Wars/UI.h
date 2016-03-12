@@ -69,13 +69,13 @@ namespace TerminalWars {
 	/// Function: DrawMapUnits
 	/// This function draws the map units only on the screen.
 	/// It has optional parameters for the position of the map as well.
-	void DrawMapUnits(Map *m, std::vector<Unit> units, int width = -1, int height = -1, int xScreen = 0, int yScreen = 0, int xMap = 0, int yMap = 0);
+	void DrawMapUnits(Map *m, std::vector<Unit> &units, int width = -1, int height = -1, int xScreen = 0, int yScreen = 0, int xMap = 0, int yMap = 0);
 	
 	/// Function: DrawFieldInfo
 	/// This function draws the field description underneath the map for the
 	/// user. It has optional parameters for the position of the element, but
 	/// it is ideal to set this so that it fits on the user's screen.
-	void DrawFieldInfo(MapTile mapTile, int width = -1, int height = -1, int xPos = 20, int yPos = rlutil::trows() - UIInfoHeight);
+	void DrawFieldInfo(MapTile &mapTile, int width = -1, int height = -1, int xPos = 20, int yPos = rlutil::trows() - UIInfoHeight);
 	
 	/// Function: DrawTurnInfo
 	/// This function draws the turn details underneath the map for the user.

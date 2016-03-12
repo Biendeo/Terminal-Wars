@@ -6,6 +6,7 @@ namespace TerminalWars {
 
 	class MapTile {
 		public:
+		MapTile();
 		MapTile(MapTileType type, std::string name, char displayChar, Color foregroundColor, Color backgroundColor, Movement infantry, Movement mech, Movement tires, Movement tread, Movement pipe, Movement slime, Movement ship, Movement transport, Movement air, DefenseRating defense);
 		~MapTile();
 		MapTileType GetType();

@@ -4,21 +4,16 @@
 
 namespace TerminalWars {
 
-	Unit::Unit(UnitType type, Team team, UnitData *data, int x, int y) {
+	Unit::Unit(UnitType type, Team team, UnitData &datac, int x, int y) : data(datac) {
 		givenName = "";
 		this->type = type;
 		this->team = team;
-		this->data = data;
 		Move(x, y);
 		carried = false;
 		health = 100;
 	}
 	
-	Unit::Unit(UnitType type, Team team, UnitData *data) : Unit::Unit(type, team, data, 0, 0) {
-		
-	}
-
-
+	Unit::Unit(UnitType type, Team team, UnitData &datac) : Unit::Unit(type, team, datac, 0, 0) {}
 
 	Unit::~Unit() {
 	}

@@ -1,7 +1,10 @@
 #include <string>
 #include "MapTile.h"
+#include "rlutil.h"
 
 namespace TerminalWars {
+	MapTile::MapTile() : MapTile(MapTileType::NONE, "None", '?', rlutil::GREY, rlutil::BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) {}
+
 	MapTile::MapTile(MapTileType type, std::string name, char displayChar, Color foregroundColor, Color backgroundColor, Movement infantry, Movement mech, Movement tires, Movement tread, Movement pipe, Movement slime, Movement ship, Movement transport, Movement air, DefenseRating defense) {
 		this->type = type;
 		this->name = name;
