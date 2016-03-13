@@ -309,7 +309,7 @@ namespace TerminalWars {
 	}
 	
 	Money Game::GetCurrentPlayerMoney() {
-		return players.at(whoseTurn).money;
+		return GetPlayerMoney(whoseTurn);
 	}
 	
 	void Game::EndTurn() {
@@ -317,19 +317,19 @@ namespace TerminalWars {
 		if (whoseTurn == Team::GREEN) {
 			allPlayersDone = true;
 		} else if (whoseTurn == Team::YELLOW) {
-			if (players.count(Team::GREEN) == 1) {
+			if (DoesPlayerExist(Team::GREEN)) {
 				whoseTurn = Team::GREEN;
 			} else {
 				allPlayersDone = true;
 			}
 		} else if (whoseTurn == Team::BLUE) {
-			if (players.count(Team::YELLOW) == 1) {
+			if (DoesPlayerExist(Team::YELLOW)) {
 				whoseTurn = Team::YELLOW;
 			} else {
 				allPlayersDone = true;
 			}
 		} else if (whoseTurn == Team::RED) {
-			if (players.count(Team::BLUE) == 1) {
+			if (DoesPlayerExist(Team::BLUE)) {
 				whoseTurn = Team::BLUE;
 			} else {
 				allPlayersDone = true;
