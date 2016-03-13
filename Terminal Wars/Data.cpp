@@ -54,7 +54,7 @@ namespace TerminalWars {
 		}
 		while (std::getline(file, currentLine)) {
 			std::vector<std::string> splitLine = SplitLine(currentLine, ',');
-			units.emplace(StringToUnitType(splitLine.at(0)), UnitData(StringToUnitType(splitLine.at(0)), splitLine.at(0), splitLine.at(1).at(0), std::stoi(splitLine.at(2)), StringToMovementType(splitLine.at(3)), std::stoi(splitLine.at(4)), std::stoi(splitLine.at(5)), std::stoi(splitLine.at(6)), StringToWeaponType(splitLine.at(7)), StringToWeaponType(splitLine.at(8))));
+			units.emplace(StringToUnitType(splitLine.at(0)), UnitData(StringToUnitType(splitLine.at(0)), splitLine.at(0), splitLine.at(1).at(0), std::stoi(splitLine.at(2)), StringToMovementType(splitLine.at(3)), std::stoi(splitLine.at(4)), std::stoi(splitLine.at(5)), std::stoi(splitLine.at(6)), GetWeaponData(StringToWeaponType(splitLine.at(7))), GetWeaponData(StringToWeaponType(splitLine.at(8)))));
 		}
 		file.close();
 

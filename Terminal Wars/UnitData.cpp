@@ -5,8 +5,7 @@
 
 
 namespace TerminalWars {
-	UnitData::UnitData(UnitType type, std::string name, char displayChar, MoneyCost cost, MovementType movementType, Movement maxMovement, Movement maxFuel, Vision vision, WeaponType weapon1, WeaponType weapon2) {
-		// TODO: All of this.
+	UnitData::UnitData(UnitType type, std::string name, char displayChar, MoneyCost cost, MovementType movementType, Movement maxMovement, Movement maxFuel, Vision vision, Weapon &weapon1c, Weapon &weapon2c) : weapon1(weapon1c), weapon2(weapon2c) {
 		this->type = type;
 		this->name = name;
 		this->displayChar = displayChar;
@@ -15,8 +14,6 @@ namespace TerminalWars {
 		this->maxMovement = maxMovement;
 		this->maxFuel = maxFuel;
 		this->vision = vision;
-		this->weapon1 = weapon1;
-		this->weapon2 = weapon2;
 	}
 
 
@@ -52,11 +49,11 @@ namespace TerminalWars {
 		return vision;
 	}
 
-	Weapon UnitData::GetWeapon1() {
-		return Data::GetWeaponData(weapon1);
+	Weapon &UnitData::GetWeapon1() {
+		return weapon1;
 	}
-	Weapon UnitData::GetWeapon2() {
-		return Data::GetWeaponData(weapon2);
+	Weapon &UnitData::GetWeapon2() {
+		return weapon2;
 	}
 
 	char UnitData::GetDisplayChar() {
