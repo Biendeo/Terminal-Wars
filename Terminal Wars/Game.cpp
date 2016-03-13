@@ -15,15 +15,23 @@ namespace TerminalWars {
 		cursorY = 0;
 		CenterCursor();
 		showUnits = true;
-		// TODO: When the end turn function is made, decrement these.
-		whoseTurn = Team::RED;
-		turn = 1;
-		players.emplace(Team::RED, Player());
-		players.at(Team::RED).team = Team::RED;
-		players.at(Team::RED).money = 50000;
-		players.emplace(Team::BLUE, Player());
-		players.at(Team::BLUE).team = Team::BLUE;
-		players.at(Team::BLUE).money = 50000;
+		whoseTurn = Team::NONE;
+		turn = 0;
+		
+		if (m->GetNumOfBuildings(Team::RED) > 0) {
+			players.emplace(Team::RED, Player());
+		}
+		if (m->GetNumOfBuildings(Team::BLUE) > 0) {
+			players.emplace(Team::BLUE, Player());
+		}
+		if (m->GetNumOfBuildings(Team::GREEN) > 0) {
+			players.emplace(Team::GREEN, Player());
+		}
+		if (m->GetNumOfBuildings(Team::YELLOW) > 0) {
+			players.emplace(Team::YELLOW, Player());
+		}
+
+		EndTurn();
 	}
 
 	Game::Game(std::string mapPath) {
@@ -44,9 +52,28 @@ namespace TerminalWars {
 		rlutil::cls();
 		char keyPress = -1;
 		bool exitingGame = false;
-		DrawTurnInfo(*this);
+		bool bottomInfoOverDrawn = true;
+		bool cursorOnUnit = false;
+		
+		// TODO: Is there a better way of having a reference wrapper exist?
+		Unit dummyUnit(UnitType::NONE, Team::NONE, Data::GetUnitData(UnitType::NONE), -1, -1);
+		std::reference_wrapper<Unit> currentSelectedUnit(dummyUnit);
+
 		while (!exitingGame) {
 			DrawMainMap();
+			if (bottomInfoOverDrawn) {
+				DrawTurnInfo(*this);
+				bottomInfoOverDrawn = false;
+			}
+			for (Unit &u : units) {
+				if (u.GetX() == cursorX && u.GetY() == cursorY) {
+					cursorOnUnit = true;
+					currentSelectedUnit = u;
+					break;
+				} else {
+					cursorOnUnit = false;
+				}
+			}
 			keyPress = rlutil::getkey();
 			switch (keyPress) {
 				case upKey:
@@ -66,22 +93,50 @@ namespace TerminalWars {
 					// Long part on menu functions.
 					std::vector<std::string> options;
 					
-					options.push_back("EXIT GAME");
 					
-					if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::RED_BASE) {
-						options.push_back("BUY LAND UNIT");
-					} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::BLUE_BASE) {
-						options.push_back("BUY LAND UNIT");
+					if (!cursorOnUnit) {
+						if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::RED_BASE) {
+							options.push_back("BUY LAND UNIT");
+						} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::BLUE_BASE) {
+							options.push_back("BUY LAND UNIT");
+						} else if (whoseTurn == Team::GREEN && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::GREEN_BASE) {
+							options.push_back("BUY LAND UNIT");
+						} else if (whoseTurn == Team::YELLOW && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::YELLOW_BASE) {
+							options.push_back("BUY LAND UNIT");
+						} else if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::RED_PORT) {
+							options.push_back("BUY SEA UNIT (TODO)");
+						} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::BLUE_PORT) {
+							options.push_back("BUY SEA UNIT (TODO)");
+						} else if (whoseTurn == Team::GREEN && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::GREEN_PORT) {
+							options.push_back("BUY SEA UNIT (TODO)");
+						} else if (whoseTurn == Team::YELLOW && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::YELLOW_PORT) {
+							options.push_back("BUY SEA UNIT (TODO)");
+						} else if (whoseTurn == Team::RED && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::RED_AIRPORT) {
+							options.push_back("BUY AIR UNIT (TODO)");
+						} else if (whoseTurn == Team::BLUE && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::BLUE_AIRPORT) {
+							options.push_back("BUY AIR UNIT (TODO)");
+						} else if (whoseTurn == Team::GREEN && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::GREEN_AIRPORT) {
+							options.push_back("BUY AIR UNIT (TODO)");
+						} else if (whoseTurn == Team::YELLOW && m->GetTile(cursorX, cursorY, true).GetType() == MapTileType::YELLOW_AIRPORT) {
+							options.push_back("BUY AIR UNIT (TODO)");
+						}
+
+						options.push_back(DisableStringForMenu("FIELD INFO (TODO)"));
+					} else {
+						if (whoseTurn == currentSelectedUnit.get().GetTeam()) {
+							// TODO: Add property for moved.
+							options.push_back(DisableStringForMenu("MOVE (TODO)"));
+							options.push_back(DisableStringForMenu("ATTACK (TODO)"));
+						}
+						options.push_back(DisableStringForMenu("UNIT INFO (TODO)"));
 					}
 					
-					options.push_back("END TURN (NOT DONE)");
+					options.push_back("END TURN");
+					options.push_back(DisableStringForMenu("STATS (TODO)"));
 					options.push_back(DisableStringForMenu("SAVE (TODO)"));
 					options.push_back(DisableStringForMenu("LOAD (TODO)"));
-					options.push_back(DisableStringForMenu("Option 5"));
-					options.push_back(DisableStringForMenu("Option 6"));
-					options.push_back(DisableStringForMenu("Option 7"));
-					options.push_back(DisableStringForMenu("Option 8"));
-					
+					options.push_back("EXIT GAME");
+
 					std::string chosenOption = "";
 					
 					// TODO: Determine whether this is a healthy thing to do.
@@ -95,11 +150,11 @@ namespace TerminalWars {
 						exitingGame = true;
 					} else if (chosenOption == "BUY LAND UNIT") {
 						BuyLandUnit();
-					} else if (chosenOption == "END TURN (NOT DONE)") {
+					} else if (chosenOption == "END TURN") {
 						EndTurn();
 					}
 					
-					DrawTurnInfo(*this);
+					bottomInfoOverDrawn = true;
 					
 					break;
 			}
@@ -279,6 +334,8 @@ namespace TerminalWars {
 			} else {
 				allPlayersDone = true;
 			}
+		} else {
+			whoseTurn = Team::RED;
 		}
 
 		if (allPlayersDone) {
@@ -286,11 +343,15 @@ namespace TerminalWars {
 			++turn;
 		}
 		
+		// TODO: Make this easier to change.
+		const int cashPerBuilding = 1000;
+
+		players.at(whoseTurn).money += cashPerBuilding * m->GetNumOfBuildings(whoseTurn);
+
 		for (Unit &u : units) {
 			if (u.GetTeam() == whoseTurn) {
 				// TODO: Get calculation for unit maintenance.
 				// TODO: Get calculation for unit repair.
-				// TODO: Get calculation for buildings owned (put this in a different loop).
 			}
 		}
 	}

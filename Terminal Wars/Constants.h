@@ -36,7 +36,6 @@ namespace TerminalWars {
 		ROAD,
 		SEA,
 		SHOAL,
-		// TODO: Make this team generic (will involve other stuff).
 		NONE_CITY,
 		RED_CITY,
 		BLUE_CITY,

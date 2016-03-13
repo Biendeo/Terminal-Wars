@@ -65,7 +65,7 @@ namespace TerminalWars {
 	void Map::CaptureBuilding(int x, int y, Team team) {
 		// TODO: Make this not as repetitive.
 		try {
-			switch (map.at(x).at(y).get().GetType()) {
+			switch (map.at(y).at(x).get().GetType()) {
 				case MapTileType::NONE_CITY:
 				case MapTileType::RED_CITY:
 				case MapTileType::BLUE_CITY:
@@ -73,19 +73,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_CITY:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_CITY);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_CITY);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_CITY);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_CITY);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_CITY);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_CITY);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_CITY);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_CITY);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_CITY);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_CITY);
 							break;
 					}
 					break;
@@ -96,19 +96,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_HQ:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_HQ);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_HQ);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_HQ);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_HQ);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_HQ);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_HQ);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_HQ);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_HQ);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_HQ);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_HQ);
 							break;
 					}
 					break;
@@ -119,19 +119,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_BASE:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_BASE);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_BASE);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_BASE);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_BASE);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_BASE);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_BASE);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_BASE);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_BASE);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_BASE);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_BASE);
 							break;
 					}
 					break;
@@ -142,19 +142,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_PORT:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_PORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_PORT);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_PORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_PORT);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_PORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_PORT);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_PORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_PORT);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_PORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_PORT);
 							break;
 					}
 					break;
@@ -165,19 +165,19 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_AIRPORT:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_AIRPORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_AIRPORT);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_AIRPORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_AIRPORT);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_AIRPORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_AIRPORT);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_AIRPORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_AIRPORT);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_AIRPORT);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_AIRPORT);
 							break;
 					}
 					break;
@@ -188,24 +188,24 @@ namespace TerminalWars {
 				case MapTileType::YELLOW_TOWER:
 					switch (team) {
 						case Team::NONE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::NONE_TOWER);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::NONE_TOWER);
 							break;
 						case Team::RED:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::RED_TOWER);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::RED_TOWER);
 							break;
 						case Team::BLUE:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::BLUE_TOWER);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::BLUE_TOWER);
 							break;
 						case Team::GREEN:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::GREEN_TOWER);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::GREEN_TOWER);
 							break;
 						case Team::YELLOW:
-							map.at(x).at(y).get() = Data::GetMapTileData(MapTileType::YELLOW_TOWER);
+							map.at(y).at(x).get() = Data::GetMapTileData(MapTileType::YELLOW_TOWER);
 							break;
 					}
 					break;
 				default:
-					std::cerr << "Map::CaptureBuilding() tried to convert an invalid " << map.at(x).at(y).get().GetName() << "." << std::endl;
+					std::cerr << "Map::CaptureBuilding() tried to convert an invalid " << map.at(y).at(x).get().GetName() << "." << std::endl;
 					break;
 			}
 		}
@@ -221,7 +221,7 @@ namespace TerminalWars {
 		bool red, blue, green, yellow = false;
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				switch (map.at(x).at(y).get().GetType()) {
+				switch (map.at(y).at(x).get().GetType()) {
 					case MapTileType::RED_HQ:
 						if (!red) {
 							red = true;
@@ -256,10 +256,10 @@ namespace TerminalWars {
 	}
 
 	int Map::GetNumOfBuildings(Team team) {
-		int totalBuildings, redBuildings, blueBuildings, greenBuildings, yellowBuildings = 0;
+		int totalBuildings = 0, redBuildings = 0, blueBuildings = 0, greenBuildings = 0, yellowBuildings = 0;
 		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; y++) {
-				switch (map.at(x).at(y).get().GetType()) {
+			for (int x = 0; x < width; x++) {
+				switch (map.at(y).at(x).get().GetType()) {
 					case MapTileType::NONE_CITY:
 					case MapTileType::NONE_HQ:
 					case MapTileType::NONE_BASE:
