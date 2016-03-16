@@ -29,6 +29,7 @@ namespace TerminalWars {
 		~Game();
 		void Play();
 		void DrawMainMap();
+		void DrawPartialMap(char keyPress);
 		void CenterCursor();
 		int BuyLandUnit();
 		void EndTurn();

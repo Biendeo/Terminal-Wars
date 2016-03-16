@@ -54,17 +54,24 @@ namespace TerminalWars {
 		bool exitingGame = false;
 		bool bottomInfoOverDrawn = true;
 		bool cursorOnUnit = false;
+		int lastPanMap = 2;
 		
 		// TODO: Is there a better way of having a reference wrapper exist?
 		Unit dummyUnit(UnitType::NONE, Team::NONE, Data::GetUnitData(UnitType::NONE), -1, -1);
 		std::reference_wrapper<Unit> currentSelectedUnit(dummyUnit);
 
 		while (!exitingGame) {
-			DrawMainMap();
+			if (lastPanMap == 2) {
+				DrawMainMap();
+			} else if (lastPanMap == 1) {
+				DrawPartialMap(keyPress);
+			}
 			if (bottomInfoOverDrawn) {
 				DrawTurnInfo(*this);
 				bottomInfoOverDrawn = false;
 			}
+			DrawFieldInfo(m->GetTile(cursorX, cursorY, true));
+			
 			for (Unit &u : units) {
 				if (u.GetX() == cursorX && u.GetY() == cursorY) {
 					cursorOnUnit = true;
@@ -80,7 +87,7 @@ namespace TerminalWars {
 				case downKey:
 				case rightKey:
 				case leftKey:
-					PanMap(keyPress);	
+					lastPanMap = PanMap(keyPress);	
 					break;
 				case cancelKey:
 					if (showUnits) {
@@ -88,6 +95,7 @@ namespace TerminalWars {
 					} else {
 						showUnits = true;
 					}
+					lastPanMap = 2;
 					break;
 				case confirmKey:
 					// Long part on menu functions.
@@ -155,14 +163,13 @@ namespace TerminalWars {
 					}
 					
 					bottomInfoOverDrawn = true;
-					
+					lastPanMap = 2;
 					break;
 			}
 		}
 	}
 
 	void Game::DrawMainMap() {
-		// TODO: Make this more efficient, such as when the map doesn't pan.
 		int screenWidth = rlutil::tcols();
 		int screenHeight = rlutil::trows() - UIInfoHeight;
 
@@ -180,13 +187,45 @@ namespace TerminalWars {
 		rlutil::setBackgroundColor(rlutil::LIGHTMAGENTA);
 		std::cout << currentTile.GetDisplayChar();
 		rlutil::resetColor();
-				
-		/*
-		if (showUnits && if on top of a unit) {
-			drawUnitInfo();
-		} else {*/
-		DrawFieldInfo(m->GetTile(cursorX, cursorY, true));
-		//}
+	}
+	
+	void Game::DrawPartialMap(char keyPress) {
+		char drawWidth = 1;
+		char drawHeight = 1;
+		char moveDown = 0;
+		char moveRight = 0;
+		
+		switch(keyPress) {
+			case upKey:
+				++drawHeight;
+				break;
+			case downKey:
+				++drawHeight;
+				moveDown = 1;
+				break;
+			case leftKey:
+				++drawWidth;
+				break;
+			case rightKey:
+				++drawWidth;
+				moveRight = 1;
+				break;
+		}
+		
+		DrawMap(m, drawWidth, drawHeight, cursorX - mapX - moveRight, cursorY - mapX - moveDown, cursorX - mapX - moveRight, cursorY - mapY - moveDown);
+		
+		if (showUnits) {
+			DrawMapUnits(m, units, drawWidth, drawHeight, cursorX - mapX - moveRight, cursorY - mapX - moveDown, cursorX - mapX - moveRight, cursorY - mapY - moveDown);
+		}
+		
+		// TODO: Make this it's own function, it's copy pasted from before.
+		rlutil::locate(cursorX - mapX + 1, cursorY - mapY + 1);
+		rlutil::saveDefaultColor();
+		MapTile currentTile = m->GetTile(cursorX, cursorY, true);
+		rlutil::setColor(currentTile.GetForegroundColor());
+		rlutil::setBackgroundColor(rlutil::LIGHTMAGENTA);
+		std::cout << currentTile.GetDisplayChar();
+		rlutil::resetColor();
 	}
 
 	void Game::CenterCursor() {
@@ -271,8 +310,8 @@ namespace TerminalWars {
 		// TODO: Make a generic unit creation part.
 		std::vector<std::string> landUnitsList;
 		std::vector<UnitType> landUnits;
-		for (int i = 0; i < Data::GetUnitDataSize(); i++) {
-			UnitData unit = Data::GetUnitData(static_cast<UnitType>(i));
+		for (int i = 0; i < d->GetUnitDataSize(); i++) {
+			UnitData unit = d->GetUnitData(static_cast<UnitType>(i));
 			std::string repString = "";
 			
 				// TODO: Decide how pipe and slime are handled.
@@ -302,8 +341,8 @@ namespace TerminalWars {
 			// TODO: Handle this.
 			return 2;
 		} else {
-			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, Data::GetUnitData(landUnits.at(choice)), cursorX, cursorY));
-			players.at(whoseTurn).money -= Data::GetUnitData(landUnits.at(choice)).GetCost();
+			units.emplace_back(Unit(landUnits.at(choice), whoseTurn, d->GetUnitData(landUnits.at(choice)), cursorX, cursorY));
+			players.at(whoseTurn).money -= d->GetUnitData(landUnits.at(choice)).GetCost();
 		}
 		return 0;
 	}
